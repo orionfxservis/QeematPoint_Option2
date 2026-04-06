@@ -1,821 +1,1070 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qeemat Point - بہترین قیمتیں، بہترین خریداری</title>
-	<link rel="stylesheet" href="../css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
-        
-        :root {
-            --primary-green: #10b981;
-            --secondary-gold: #f59e0b;
-            --accent-red: #ef4444;
-            --dark-green: #047857;
-            --light-bg: #f8fafc;
-        }
-        
-        body {
-            font-family: 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #1e293b;
-        }
-        
-        .urdu-text {
-            font-family: 'Noto Sans Arabic', sans-serif;
-            direction: rtl;
-            text-align: right;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 50%, var(--secondary-gold) 100%);
-        }
-        
-        .floating-icon {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .floating-icon:nth-child(2) { animation-delay: -1s; }
-        .floating-icon:nth-child(3) { animation-delay: -2s; }
-        .floating-icon:nth-child(4) { animation-delay: -3s; }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        
-        .category-slide {
-            animation: slide 20s infinite;
-        }
-        
-        @keyframes slide {
-            0%, 25% { transform: translateX(0); }
-            25.1%, 50% { transform: translateX(-100%); }
-            50.1%, 75% { transform: translateX(-200%); }
-            75.1%, 100% { transform: translateX(-300%); }
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .search-input {
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            transition: all 0.3s ease;
-        }
-        
-        .search-input:focus {
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-            outline: none;
-        }
-        
-        .banner-placeholder {
-            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
-            border: 2px dashed #d1d5db;
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content {
-                transform: translateY(0);
-            }
-            
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 1rem;
-            }
-            
-            .floating-icon {
-                display: none;
-            }
-        }
-        
-        .scrolling-ads {
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        
-        .scrolling-ads > div {
-            display: inline-block;
-            animation: scroll 30s linear infinite;
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        .category-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 1rem;
-            padding: 1rem 0;
-        }
-        
-        .category-item {
-            flex: 0 0 300px;
-            scroll-snap-align: start;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Qeemat Point - قِیمَت پوائنٹ | Smart Commodity Price Comparison Pakistan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-soft: rgba(15, 118, 110, 0.18);
+      --secondary: #f97316;
+      --accent: #22c55e;
+      --dark: #020617;
+      --bg: #020617;
+      --card: #020617;
+      --border-soft: rgba(148, 163, 184, 0.35);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(120deg, #22c55e, #f97316, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Glassmorphism card */
+    .glass-card {
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.2), rgba(15, 23, 42, 0.95));
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(18px);
+    }
+
+    /* Hero background scrolling categories */
+    .category-strip {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.15;
+    }
+
+    .category-row {
+      display: flex;
+      gap: 24px;
+      position: absolute;
+      left: -40%;
+      width: 180%;
+      animation: catScroll 40s linear infinite;
+      filter: blur(0.6px);
+    }
+
+    .category-row:nth-child(2) {
+      top: 30%;
+      animation-duration: 55s;
+      animation-direction: reverse;
+      opacity: 0.7;
+    }
+
+    .category-row:nth-child(3) {
+      top: 65%;
+      animation-duration: 65s;
+    }
+
+    @keyframes catScroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-40%);
+      }
+    }
+
+    .cat-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.7), rgba(15, 23, 42, 0.95));
+      padding: 10px 26px;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      text-transform: capitalize;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Floating balloons for commodities */
+    .balloon-layer {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #22c55e, #16a34a);
+      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: rise 14s linear infinite;
+      opacity: 0.9;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      width: 2px;
+      height: 20px;
+      background: rgba(148, 163, 184, 0.6);
+    }
+
+    .balloon-icon {
+      font-size: 1.4rem;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-120vh) scale(0.4);
+        opacity: 0;
+      }
+    }
+
+    .balloon.blow {
+      animation: blow 1s ease-out forwards;
+    }
+
+    @keyframes blow {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      70% {
+        transform: scale(1.8);
+        opacity: 1;
+        filter: blur(1px);
+      }
+
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Search category dropdown */
+    .category-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at top left, rgba(51, 65, 85, 0.9), rgba(15, 23, 42, 0.98));
+    }
+
+    .category-pill button {
+      outline: none;
+    }
+
+    .category-menu {
+      max-height: 270px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    /* List table */
+    .product-row {
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.7);
+    }
+
+    .product-row:hover {
+      background: radial-gradient(circle at left, rgba(56, 189, 248, 0.06), rgba(15, 23, 42, 0.95));
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    /* Banner placeholders */
+    .banner-horizontal {
+      width: 100%;
+      max-width: 720px;
+      height: 120px;
+      border-radius: 1rem;
+      border: 1px dashed rgba(148, 163, 184, 0.8);
+      background: repeating-linear-gradient(135deg,
+          rgba(30, 64, 175, 0.65),
+          rgba(30, 64, 175, 0.65) 10px,
+          rgba(15, 23, 42, 0.95) 10px,
+          rgba(15, 23, 42, 0.95) 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .banner-vertical-frame {
+      position: relative;
+      width: 120px;
+      max-width: 120px;
+      height: 720px;
+      max-height: 720px;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px dashed rgba(148, 163, 184, 0.8);
+      background: radial-gradient(circle at top, rgba(8, 47, 73, 0.85), rgba(15, 23, 42, 1));
+    }
+
+    .banner-vertical-track {
+      position: absolute;
+      width: 100%;
+      animation: verticalScroll 14s linear infinite;
+    }
+
+    .banner-item {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e7eb;
+      font-size: 0.8rem;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    .banner-item:nth-child(1) {
+      background: linear-gradient(160deg, #047857, #22c55e);
+    }
+
+    .banner-item:nth-child(2) {
+      background: linear-gradient(160deg, #1d4ed8, #38bdf8);
+    }
+
+    .banner-item:nth-child(3) {
+      background: linear-gradient(160deg, #b45309, #f59e0b);
+    }
+
+    .banner-item:nth-child(4) {
+      background: linear-gradient(160deg, #7c2d12, #f97316);
+    }
+
+    @keyframes verticalScroll {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 1024px) {
+      .banner-vertical-frame {
+        display: none;
+      }
+
+      .hero-layout {
+        flex-direction: column-reverse;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-tags text-2xl text-green-600"></i>
-                    <h1 class="text-2xl font-bold text-gray-900 urdu-text">قِیمَت پوائنٹ</h1>
-                </div>
-                
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-700 hover:text-green-600 font-medium transition-colors">ہوم</a>
-                    <a href="pages/categories" class="text-gray-700 hover:text-green-600 font-medium transition-colors">کیٹگریز</a>
-                    <a href="pages/products" class="text-gray-700 hover:text-green-600 font-medium transition-colors">پروڈکٹس</a>
-                    <a href="pages/blog" class="text-gray-700 hover:text-green-600 font-medium transition-colors">بلاگ</a>
-                    <a href="pages/about" class="text-gray-700 hover:text-green-600 font-medium transition-colors">ہمارے بارے میں</a>
-                    <a href="pages/contact" class="text-gray-700 hover:text-green-600 font-medium transition-colors">رابطہ</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <input type="text" id="searchInput" placeholder="پروڈکٹ سرچ کریں..." 
-                               class="search-input w-64 px-4 py-2 rounded-full text-sm focus:ring-0">
-                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-green-600">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors">
-                        <i class="fas fa-shopping-cart mr-2"></i>کارٹ
-                    </button>
-                </div>
-                
-                <button class="md:hidden text-gray-700">
-                    <i class="fas fa-bars text-xl"></i>
+
+<body class="text-slate-100">
+  <!-- Floating Balloon Layer -->
+  <div class="balloon-layer" aria-hidden="true"></div>
+
+  <!-- Hero Background Category Strip -->
+  <div class="category-strip" aria-hidden="true">
+    <div class="category-row" style="top:10%;">
+      <div class="cat-chip"><span>🥦</span><span>Sabzi / Vegetables</span></div>
+      <div class="cat-chip"><span>🥩</span><span>Gosht / Meat</span></div>
+      <div class="cat-chip"><span>🍚</span><span>Chawal / Rice</span></div>
+      <div class="cat-chip"><span>🍳</span><span>Anday / Eggs</span></div>
+      <div class="cat-chip"><span>🛢️</span><span>Cooking Oil</span></div>
+      <div class="cat-chip"><span>🧴</span><span>Personal Care</span></div>
+      <div class="cat-chip"><span>🧼</span><span>Detergent</span></div>
+      <div class="cat-chip"><span>🍼</span><span>Baby Items</span></div>
+      <div class="cat-chip"><span>🍪</span><span>Snacks &amp; Biscuits</span></div>
+      <div class="cat-chip"><span>💊</span><span>Medicine (OTC)</span></div>
+    </div>
+    <div class="category-row">
+      <div class="cat-chip"><span>📱</span><span>Mobile Phones</span></div>
+      <div class="cat-chip"><span>👟</span><span>Shoes</span></div>
+      <div class="cat-chip"><span>👕</span><span>Clothing</span></div>
+      <div class="cat-chip"><span>🏠</span><span>Home Essentials</span></div>
+      <div class="cat-chip"><span>💻</span><span>Electronics</span></div>
+      <div class="cat-chip"><span>🧂</span><span>Masalay / Spices</span></div>
+      <div class="cat-chip"><span>🍞</span><span>Bread &amp; Bakery</span></div>
+      <div class="cat-chip"><span>🧃</span><span>Juices &amp; Drinks</span></div>
+      <div class="cat-chip"><span>🥛</span><span>Milk &amp; Dairy</span></div>
+    </div>
+    <div class="category-row">
+      <div class="cat-chip"><span>🛒</span><span>Monthly Grocery</span></div>
+      <div class="cat-chip"><span>💡</span><span>Utility Items</span></div>
+      <div class="cat-chip"><span>🧺</span><span>Household Cleaning</span></div>
+      <div class="cat-chip"><span>📚</span><span>Stationery</span></div>
+      <div class="cat-chip"><span>🎮</span><span>Gaming</span></div>
+      <div class="cat-chip"><span>🧥</span><span>Winter Wear</span></div>
+      <div class="cat-chip"><span>☕</span><span>Tea &amp; Coffee</span></div>
+      <div class="cat-chip"><span>🍫</span><span>Chocolate</span></div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div
+          class="w-9 h-9 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center shadow-lg shadow-emerald-500/40">
+          <span class="text-xl font-black text-slate-950">Q</span>
+        </div>
+        <div class="leading-tight">
+          <div class="flex items-end gap-1">
+            <span class="text-lg sm:text-xl font-bold gradient-text">Qeemat Point</span>
+            <span class="text-xs text-slate-400 hidden sm:inline">قِیمَت پوائنٹ</span>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block">Smart Price Comparison for Pakistan</p>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#home" class="text-emerald-300 hover:text-emerald-400 transition">ہوم / Home</a>
+        <a href="#categories" class="hover:text-sky-300 text-slate-200 transition">کیٹگریز / Categories</a>
+        <a href="#deals" class="hover:text-sky-300 text-slate-200 transition">بہترین قیمتیں / Best Prices</a>
+        <a href="#blog" class="hover:text-sky-300 text-slate-200 transition">بلاگ / Blog</a>
+        <a href="#about" class="hover:text-sky-300 text-slate-200 transition">ہمارے بارے میں / About</a>
+        <a href="#contact" class="hover:text-sky-300 text-slate-200 transition">رابطہ / Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/40 hover:bg-emerald-400 transition">
+          🇵🇰 Live Prices
+        </button>
+        <button id="mobileMenuBtn"
+          class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-700 bg-slate-900/70 text-slate-100">
+          <span class="sr-only">Menu</span>
+          ☰
+        </button>
+      </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+        <a href="#home" class="py-1 text-emerald-300">ہوم / Home</a>
+        <a href="#categories" class="py-1 text-slate-200">کیٹگریز / Categories</a>
+        <a href="#deals" class="py-1 text-slate-200">بہترین قیمتیں / Best Prices</a>
+        <a href="#blog" class="py-1 text-slate-200">بلاگ / Blog</a>
+        <a href="#about" class="py-1 text-slate-200">ہمارے بارے میں / About</a>
+        <a href="#contact" class="py-1 text-slate-200">رابطہ / Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <!-- HERO SECTION -->
+    <section id="home" class="pt-10 pb-16 sm:pb-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-10 hero-layout">
+        <!-- Left: Content -->
+        <div class="flex-1 flex flex-col justify-start">
+          <div
+            class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-300 text-[0.75rem] font-semibold mb-4 w-fit">
+            قیمتوں کا موازنہ، ہوش مندانہ خریداری — Price Smart, Save More
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+            <span class="block gradient-text">
+              قیمت دیکھیں، پیسے بچائیں
+            </span>
+            <span class="block text-slate-100 mt-1">
+              Compare Commodity Prices Across Pakistan
+            </span>
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 max-w-xl">
+            ایک ہی چیز کی مختلف دکانوں، سپر اسٹورز اور آن لائن پلیٹ فارمز کی قیمت ایک جگہ دیکھیں۔
+            اپنی قریبی مارکیٹس سے لے کر بڑے برانڈز تک —
+            <span class="text-emerald-300 font-semibold">سستی، اصل اور قریب ترین</span> آپشن پہلے۔
+          </p>
+
+          <!-- Search Panel -->
+          <div class="glass-card p-4 sm:p-5 mb-6 relative">
+            <div class="flex flex-col sm:flex-row gap-3 sm:items-center mb-3">
+              <!-- Category dropdown -->
+              <div
+                class="relative category-pill px-3 py-1.5 flex items-center gap-2 text-xs sm:text-sm w-full sm:w-auto">
+                <span
+                  class="px-2 py-1 rounded-full bg-slate-900/60 text-emerald-300 border border-emerald-500/50 text-[0.7rem] sm:text-xs font-semibold">
+                  Category / کیٹگری
+                </span>
+                <button id="categoryToggle" class="flex-1 flex items-center justify-between gap-1 text-slate-100">
+                  <span id="categoryLabel" class="truncate">All Categories / تمام کیٹگریز</span>
+                  <span class="text-xs text-slate-400">▾</span>
                 </button>
+                <!-- Dropdown menu -->
+                <div id="categoryMenu"
+                  class="hidden absolute right-0 top-10 mt-1 w-56 category-menu rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl shadow-slate-900/90 z-20">
+                  <button data-category="all"
+                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
+                    All Categories / تمام کیٹگریز
+                  </button>
+                  <button data-category="grocery"
+                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
+                    Food / فوڈ
+                  </button>
+                  <button data-category="grocery"
+                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
+                    Grocery / گروسری
+                  </button>
+                  <button data-category="vegetables"
+                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
+                    Vegetables / سبزیاں
+                  </button>
+                  <button data-category="meat"
+                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
+                    Meat &amp; Chicken / گوشت &amp; چکن
+                  </button>
+                  <button data-category="electronics"
+                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
+                    Electronics / الیکٹرونکس
+                  </button>
+                  <button data-category="personal"
+                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
+                    Personal Care / ذاتی نگہداشت
+                  </button>
+                </div>
+              </div>
+              <!-- Search input -->
+              <div class="flex-1 flex items-stretch gap-2">
+                <div class="flex-1 relative">
+                  <input id="searchInput" type="text"
+                    placeholder="مثال: چینی، دودھ، موبائل فون...  |  e.g. Sugar, Milk, Mobile"
+                    class="w-full bg-slate-900/70 border border-slate-700 rounded-2xl text-xs sm:text-sm px-3 sm:px-4 py-2.5 pr-9 outline-none focus:ring-2 focus:ring-emerald-500/70 focus:border-emerald-400 text-slate-100 placeholder:text-slate-500" />
+                  <span class="absolute left-3 top-2.5 text-slate-500 text-sm">🔍</span>
+                </div>
+                <button id="searchBtn"
+                  class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-sky-500 text-slate-950 font-semibold text-xs sm:text-sm shadow-lg shadow-emerald-500/40 hover:from-emerald-400 hover:to-sky-400 whitespace-nowrap">
+                  Search / تلاش
+                </button>
+              </div>
             </div>
-        </div>
-    </header>
+            <p class="text-[0.7rem] sm:text-xs text-slate-400 flex flex-wrap gap-2">
+              <span class="font-semibold text-emerald-300">Nearby First / قریبی مارکیٹس پہلے</span>
+              <span class="hidden sm:inline">•</span>
+              <span>Then by Price: Low to High / قیمت کم سے زیادہ</span>
+            </p>
+          </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-gradient relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
-            <!-- Floating Icons -->
-            <div class="floating-icon absolute top-20 left-10 w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white text-2xl">
-                <i class="fas fa-mobile-alt"></i>
-            </div>
-            <div class="floating-icon absolute top-32 right-20 w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white text-2xl">
-                <i class="fas fa-laptop"></i>
-            </div>
-            <div class="floating-icon absolute bottom-20 left-16 w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white text-2xl">
-                <i class="fas fa-camera"></i>
-            </div>
-            <div class="floating-icon absolute bottom-32 right-32 w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white text-2xl">
-                <i class="fas fa-headphones"></i>
-            </div>
-            
-            <div class="hero-content relative z-10 text-center text-white">
-                <h2 class="text-5xl md:text-6xl font-bold mb-6 urdu-text leading-tight">
-                    بہترین قیمتیں، بہترین خریداری
+          <!-- Horizontal Banner -->
+          <div class="banner-horizontal">
+            720 × 120 | Horizontal Ad Space — مقامی دکانیں، سپر اسٹورز یا برانڈ بینرز
+          </div>
+        </div>
+
+        <!-- Right: Product List + Vertical Banner -->
+        <div class="flex-1 flex gap-4">
+          <!-- Product Card -->
+          <div class="flex-1 glass-card p-4 sm:p-5 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h2 class="section-title text-sm sm:text-base md:text-lg">
+                  قریبی اور سستی قیمتیں
+                  <span class="text-slate-300 text-xs sm:text-sm block">Nearby &amp; Cheapest Options</span>
                 </h2>
-                <p class="text-xl md:text-2xl mb-8 text-white/90 urdu-text">
-                    پاکستان بھر میں سب سے کم قیمتیں مل رہی ہیں - اب اپنے پسندیدہ پروڈکٹس کی قیمت کا موازنہ کریں!
+              </div>
+              <span
+                class="px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-[0.7rem] text-emerald-300">
+                Live Demo
+              </span>
+            </div>
+            <div class="border border-slate-800 rounded-xl overflow-hidden text-xs sm:text-sm">
+              <div class="grid grid-cols-12 bg-slate-900/80 text-slate-300 font-semibold px-2 sm:px-3 py-2">
+                <div class="col-span-5">Item / آئٹم</div>
+                <div class="col-span-3 text-center">Area / علاقہ</div>
+                <div class="col-span-2 text-center">Distance</div>
+                <div class="col-span-2 text-right">Price (Rs)</div>
+              </div>
+              <div id="productRows" class="divide-y divide-slate-800/80 bg-slate-950/70">
+                <!-- JS will render rows -->
+              </div>
+            </div>
+            <p class="mt-2 text-[0.7rem] text-slate-500">
+              * Demo data based on Karachi &amp; Lahore markets — actual app will use your live location
+              (GPS / Area selection) to show nearest prices first.
+            </p>
+          </div>
+
+          <!-- Vertical Banner -->
+          <aside class="hidden lg:block">
+            <div class="banner-vertical-frame">
+              <div class="banner-vertical-track">
+                <div class="banner-item">
+                  120 × 720<br />Vertical Ad — Grocery Chains<br />Karachi / Lahore / Islamabad
+                </div>
+                <div class="banner-item">
+                  Mobile Brands • Electronics Retailers • Online Stores
+                </div>
+                <div class="banner-item">
+                  Bank Offers • Credit / Debit Card Discounts • Wallets
+                </div>
+                <div class="banner-item">
+                  Utility Stores • Wholesale Markets • Local Dukaan Ads
+                </div>
+                <!-- repeat for seamless scroll -->
+                <div class="banner-item">
+                  120 × 720<br />Vertical Ad — Grocery Chains<br />Karachi / Lahore / Islamabad
+                </div>
+                <div class="banner-item">
+                  Mobile Brands • Electronics Retailers • Online Stores
+                </div>
+                <div class="banner-item">
+                  Bank Offers • Credit / Debit Card Discounts • Wallets
+                </div>
+                <div class="banner-item">
+                  Utility Stores • Wholesale Markets • Local Dukaan Ads
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES GRID -->
+    <section id="categories" class="py-10 border-t border-slate-800/80 bg-slate-950/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <h2 class="section-title gradient-text">
+              کیٹگری منتخب کریں — Shop by Category
+            </h2>
+            <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+              روز مرہ گروسری سے لے کر الیکٹرونکس تک، ہر چیز کی اصل مارکیٹ قیمت ایک کلک پر۔
+              پاکستان کے بڑے شہروں اور مقامی بازاروں کے ریٹس۔
+            </p>
+          </div>
+          <button
+            class="px-3 py-1.5 rounded-full border border-slate-700 text-xs text-slate-200 hover:border-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 self-start">
+            🔔 Price Alerts / پرائس الرٹس
+          </button>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Card 1 -->
+          <article class="glass-card p-4 hover:shadow-emerald-500/20 hover:-translate-y-1 transition transform">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-xl">🛒</div>
+              <span
+                class="text-[0.7rem] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-400/40">
+                Popular / مشہور
+              </span>
+            </div>
+            <h3 class="font-semibold mb-1 text-slate-50">Grocery / گروسری</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              ماہانہ راشن، چینی، آٹا، گھی، دالیں، چاول — سب کا ایک ساتھ موازنہ۔
+            </p>
+            <button class="text-xs font-semibold text-emerald-300 hover:text-emerald-200 flex items-center gap-1">
+              View Prices / قیمتیں دیکھیں <span>→</span>
+            </button>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="glass-card p-4 hover:shadow-sky-500/20 hover:-translate-y-1 transition transform">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-sky-500/10 flex items-center justify-center text-xl">📱</div>
+            </div>
+            <h3 class="font-semibold mb-1 text-slate-50">Mobiles &amp; Gadgets / موبائلز</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              برانڈڈ فونز، اسمارت واچ، ایئربڈز — آن لائن اور لوکل مارکیٹ ریٹس۔
+            </p>
+            <button class="text-xs font-semibold text-sky-300 hover:text-sky-200 flex items-center gap-1">
+              Compare Now / موازنہ کریں <span>→</span>
+            </button>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="glass-card p-4 hover:shadow-orange-500/20 hover:-translate-y-1 transition transform">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-orange-500/10 flex items-center justify-center text-xl">🥦</div>
+            </div>
+            <h3 class="font-semibold mb-1 text-slate-50">Vegetables &amp; Fruits / سبزیاں، پھل</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              سبزی منڈی اور قریبی سبزی والوں کی روزانہ کی اپڈیٹڈ قیمتیں۔
+            </p>
+            <button class="text-xs font-semibold text-orange-300 hover:text-orange-200 flex items-center gap-1">
+              Today Rates / آج کے ریٹ <span>→</span>
+            </button>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="glass-card p-4 hover:shadow-fuchsia-500/20 hover:-translate-y-1 transition transform">
+            <div class="flex items-center justify-between mb-2">
+              <div class="w-10 h-10 rounded-2xl bg-fuchsia-500/10 flex items-center justify-center text-xl">🧴</div>
+            </div>
+            <h3 class="font-semibold mb-1 text-slate-50">Personal Care / ذاتی نگہداشت</h3>
+            <p class="text-xs text-slate-400 mb-3">
+              شیمپو، صابن، کریمیں، بچوں کی پراڈکٹس — ڈسکاونٹس اور بنڈل آفرز۔
+            </p>
+            <button class="text-xs font-semibold text-fuchsia-300 hover:text-fuchsia-200 flex items-center gap-1">
+              Discover Deals / آفرز دیکھیں <span>→</span>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEST DEALS / SAMPLE LISTING -->
+    <section id="deals" class="py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <h2 class="section-title gradient-text">
+              آج کی بہترین قیمتیں — Today’s Smart Picks
+            </h2>
+            <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+              صارفین کی پسند، ڈسکاونٹس اور قریبی مارکیٹس کی بنیاد پر سمجھدار تجاویز۔
+              یہ صرف ڈیمو ہے، اصل پروڈکٹ میں آپ اپنی پسند (حلال گوشت، برانڈ، وزن) کے مطابق فلٹر کر سکیں گے۔
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-3">
+          <!-- Deals List -->
+          <div class="lg:col-span-2 glass-card p-4 sm:p-5">
+            <h3 class="font-semibold mb-3 text-slate-50 text-sm sm:text-base">
+              Suggested Smart Basket / سمجھدار مہینہ بھر کی خریداری
+            </h3>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <div class="border border-slate-800 rounded-xl p-3 bg-slate-950/80">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm font-semibold text-slate-100">Basic Family Grocery</span>
+                  <span
+                    class="text-[0.65rem] px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-300">Budget</span>
+                </div>
+                <p class="text-[0.7rem] text-slate-400 mb-1">
+                  4 افراد کے لیے 1 مہینہ — 3 مختلف اسٹورز سے کم ترین ریٹس ملا کر۔
                 </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                    <div class="search-panel bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 w-full max-w-md">
-                        <div class="flex space-x-2">
-                            <select id="categorySelect" class="flex-1 px-4 py-2 rounded-lg bg-white bg-opacity-80 text-gray-700 focus:outline-none">
-                                <option value="">سب کیٹگریز</option>
-                                <option value="mobile">موبائل فونز</option>
-                                <option value="laptop">لیپ ٹاپ</option>
-                                <option value="tv">ٹی وی</option>
-                                <option value="home">ہوم اپلائنسز</option>
-                                <option value="fashion">فیشن</option>
-                            </select>
-                            <button id="searchBtn" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg text-white font-medium transition-colors">
-                                <i class="fas fa-search mr-2"></i>تلاش کریں
-                            </button>
-                        </div>
-                    </div>
+                <p class="text-xs text-emerald-300 font-semibold">
+                  Estimated Saving / اندازاً بچت: Rs 1,450+
+                </p>
+              </div>
+              <div class="border border-slate-800 rounded-xl p-3 bg-slate-950/80">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-sm font-semibold text-slate-100">Meat &amp; Protein Pack</span>
+                  <span
+                    class="text-[0.65rem] px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-400/40 text-orange-300">Weekly</span>
                 </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-4">
-                        <i class="fas fa-store text-3xl text-yellow-300 mb-2"></i>
-                        <h3 class="font-semibold urdu-text">500+ اسٹورز</h3>
-                        <p class="text-sm urdu-text">ممکنہ قیمتوں کا موازنہ</p>
-                    </div>
-                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-4">
-                        <i class="fas fa-shipping-fast text-3xl text-blue-300 mb-2"></i>
-                        <h3 class="font-semibold urdu-text">فری ڈلیوری</h3>
-                        <p class="text-sm urdu-text">لاہور، کراچی، اسلام آباد</p>
-                    </div>
-                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-4">
-                        <i class="fas fa-clock text-3xl text-purple-300 mb-2"></i>
-                        <h3 class="font-semibold urdu-text">24/7 سپورٹ</h3>
-                        <p class="text-sm urdu-text">ہر وقت مدد دستیاب</p>
-                    </div>
-                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl p-4">
-                        <i class="fas fa-award text-3xl text-red-300 mb-2"></i>
-                        <h3 class="font-semibold urdu-text">100% اصلی</h3>
-                        <p class="text-sm urdu-text">گارنٹی شدہ پروڈکٹس</p>
-                    </div>
-                </div>
+                <p class="text-[0.7rem] text-slate-400 mb-1">
+                  چکن، مٹن، بیف — قریبی قصائی اور میٹ شاپس کے ریٹس۔
+                </p>
+                <p class="text-xs text-orange-300 font-semibold">
+                  Save up to / تک بچت: Rs 800 per week
+                </p>
+              </div>
             </div>
-        </div>
-        
-        <!-- Category Slider -->
-        <div class="category-slide absolute bottom-0 left-0 w-full h-64 overflow-hidden">
-            <div class="flex h-full">
-                <div class="flex-shrink-0 w-full h-full relative">
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                         alt="Electronics" class="w-full h-full object-cover opacity-50">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h3 class="text-3xl font-bold text-white urdu-text">الیکٹرانکس</h3>
-                    </div>
-                </div>
-                <div class="flex-shrink-0 w-full h-full relative">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                         alt="Fashion" class="w-full h-full object-cover opacity-50">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h3 class="text-3xl font-bold text-white urdu-text">فیشن</h3>
-                    </div>
-                </div>
-                <div class="flex-shrink-0 w-full h-full relative">
-                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7e87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" 
-                         alt="Home Appliances" class="w-full h-full object-cover opacity-50">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h3 class="text-3xl font-bold text-white urdu-text">ہوم اپلائنسز</h3>
-                    </div>
-                </div>
-                <div class="flex-shrink-0 w-full h-full relative">
-                    <img src="https://images.unsplash.com/photo-1558618048-6f7e0ee3a2a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                         alt="Books" class="w-full h-full object-cover opacity-50">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h3 class="text-3xl font-bold text-white urdu-text">کتابیں</h3>
-                    </div>
-                </div>
+          </div>
+
+          <!-- Small Insight Card -->
+          <div class="glass-card p-4 flex flex-col justify-between">
+            <div>
+              <h3 class="font-semibold mb-2 text-slate-50 text-sm sm:text-base">
+                پاکستانی صارف کے لیے خاص — Made for Pakistani Shoppers
+              </h3>
+              <ul class="text-[0.7rem] text-slate-400 space-y-1.5">
+                <li>• اردو اور انگلش دونوں میں آسان استعمال</li>
+                <li>• شہر، علاقہ، مارکیٹ کے مطابق فلٹر</li>
+                <li>• برانڈ / کھلا (open) اشیاء دونوں کا موازنہ</li>
+                <li>• مہنگائی کے رجحان (Inflation Trend) کے گراف</li>
+              </ul>
             </div>
+            <button
+              class="mt-3 px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-sky-500 text-xs font-semibold text-slate-950 hover:from-emerald-400 hover:to-sky-400">
+              Join Early Access List / ابتدائی رسائی کے لیے رجسٹر کریں
+            </button>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Horizontal Banner -->
-    <div class="bg-gray-100 py-6">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="banner-placeholder h-32 rounded-lg flex items-center justify-center text-gray-500 font-medium">
-                <div class="text-center">
-                    <i class="fas fa-ad text-4xl mb-2"></i>
-                    <p>728x90 - ہوریزونٹل ایڈوائٹائزمنٹ</p>
-                </div>
-            </div>
+    <!-- BLOG SECTION -->
+    <section id="blog" class="py-10 border-t border-slate-800/70 bg-slate-950/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <h2 class="section-title gradient-text">
+              سمجھدار خریدار بلاگ — Smart Buyer Blog
+            </h2>
+            <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+              بچت کے ٹپس، مارکیٹ ریسرچ اور اہم خبروں پر مبنی بلاگز۔ آپ کے فیملی بجٹ کے لیے پریکٹیکل گائیڈ۔
+            </p>
+          </div>
+          <button
+            class="px-3 py-1.5 rounded-full border border-slate-700 text-xs text-slate-200 hover:border-sky-400 hover:text-sky-300 transition">
+            View All Posts / تمام پوسٹس
+          </button>
         </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="glass-card p-4 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/80 transition">
+            <p class="text-[0.65rem] text-sky-300 mb-1">Inflation Insight / مہنگائی کا رجحان</p>
+            <h3 class="font-semibold text-sm text-slate-50 mb-1">
+              پاکستان میں ماہانہ گروسری بجٹ کیسے پلان کریں؟
+            </h3>
+            <p class="text-[0.7rem] text-slate-400 mb-2">
+              ٹوٹل بجٹ کے بجائے per kg اور per litre لاگت دیکھیں، خود کو over-buying سے بچائیں۔
+            </p>
+            <button class="text-[0.7rem] text-sky-300 hover:text-sky-200">
+              Read More / مزید پڑھیں →
+            </button>
+          </article>
+
+          <article class="glass-card p-4 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/80 transition">
+            <p class="text-[0.65rem] text-emerald-300 mb-1">Savings / بچت</p>
+            <h3 class="font-semibold text-sm text-slate-50 mb-1">
+              ہول سیل بمقابلہ ریٹیل: کون سا سستا پڑتا ہے؟
+            </h3>
+            <p class="text-[0.7rem] text-slate-400 mb-2">
+              کئی چیزوں میں wholesale سستا نہیں پڑتا، خاص طور پر خراب ہونے والی اشیاء میں۔
+            </p>
+            <button class="text-[0.7rem] text-emerald-300 hover:text-emerald-200">
+              Read More / مزید پڑھیں →
+            </button>
+          </article>
+
+          <article class="glass-card p-4 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/80 transition">
+            <p class="text-[0.65rem] text-orange-300 mb-1">Awareness / آگاہی</p>
+            <h3 class="font-semibold text-sm text-slate-50 mb-1">
+              پیکیجنگ پر لکھی قیمت اور اصل قیمت میں فرق کیوں؟
+            </h3>
+            <p class="text-[0.7rem] text-slate-400 mb-2">
+              MRP، ڈسکاونٹ، پروموشنل پیک اور لوکل ٹیکسز کا فرق سمجھیں۔
+            </p>
+            <button class="text-[0.7rem] text-orange-300 hover:text-orange-200">
+              Read More / مزید پڑھیں →
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT & CONTACT SECTION -->
+    <section id="about" class="py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-2">
+        <!-- About -->
+        <div class="glass-card p-5">
+          <h2 class="section-title gradient-text mb-2">
+            ہمارے بارے میں — About Qeemat Point
+          </h2>
+          <p class="text-sm text-slate-300 mb-3">
+            Qeemat Point کا مقصد ایک عام پاکستانی صارف کو اصل مارکیٹ انفارمیشن دینا ہے تاکہ
+            خریداری جذبات سے نہیں، ڈیٹا سے ہو۔ ہم قیمتیں مختلف سورسز سے لے کر، صاف
+            (clean) اور ترتیب وار شکل میں آپ کے موبائل تک پہنچاتے ہیں۔
+          </p>
+          <ul class="text-[0.75rem] text-slate-400 space-y-1.5 mb-4">
+            <li>• لوکل مارکیٹس، سپر اسٹورز، اور آن لائن پلیٹ فارمز سے aggregated data</li>
+            <li>• شہر، علاقہ، اور distance کے حساب سے “Nearby First” الگورتھم</li>
+            <li>• قیمت کم سے زیادہ (Low to High) sorting بطور default</li>
+            <li>• آنے والے فیچرز: Price History، Alerts، Community Reviews، Halal Filters</li>
+          </ul>
+          <div class="flex flex-wrap gap-2 text-[0.7rem]">
+            <span class="px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-400/40">
+              Made in Pakistan 🇵🇰
+            </span>
+            <span class="px-2 py-1 rounded-full bg-slate-900/70 text-slate-200 border border-slate-700">
+              Urdu + English Interface
+            </span>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div id="contact" class="glass-card p-5">
+          <h2 class="section-title gradient-text mb-2">
+            رابطہ — Contact Us
+          </h2>
+          <p class="text-sm text-slate-300 mb-4">
+            اگر آپ دکاندار، سپر اسٹور، یا برانڈ ہیں اور اپنی قیمتیں / آفرز دکھانا چاہتے ہیں
+            تو نیچے فارم فل کریں۔ ہم آپ سے جلد رابطہ کریں گے۔
+          </p>
+          <form class="space-y-3 text-[0.8rem]">
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block mb-1 text-slate-300">نام / Name</label>
+                <input type="text"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400" />
+              </div>
+              <div>
+                <label class="block mb-1 text-slate-300">ای میل / Email</label>
+                <input type="email"
+                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400" />
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block mb-1 text-slate-300">شہر / City</label>
+                <input type="text" placeholder="Karachi, Lahore, Islamabad..."
+                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400" />
+              </div>
+              <div>
+                <label class="block mb-1 text-slate-300">آپ کون ہیں؟ / You are</label>
+                <select
+                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400">
+                  <option>Retail Shop / جنرل اسٹور</option>
+                  <option>Super Store / سپر اسٹور</option>
+                  <option>Brand / برانڈ</option>
+                  <option>Wholesale / ہول سیل</option>
+                  <option>Other / دیگر</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block mb-1 text-slate-300">پیغام / Message</label>
+              <textarea rows="3"
+                class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400"></textarea>
+            </div>
+            <button type="button"
+              class="mt-1 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-sky-500 text-slate-950 text-xs font-semibold hover:from-emerald-400 hover:to-sky-400">
+              Send Message / پیغام بھیجیں
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+        <div class="text-[0.75rem] text-slate-500">
+          © <span id="year"></span> Qeemat Point —
+          قِیمَت پوائنٹ. All rights reserved. | Built for Pakistan 🇵🇰
+        </div>
+        <div class="flex flex-wrap gap-3 items-center text-[0.75rem]">
+          <span class="text-slate-400">Follow us:</span>
+          <a href="#"
+            class="px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200 hover:border-sky-400 hover:text-sky-300">Facebook</a>
+          <a href="#"
+            class="px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200 hover:border-sky-400 hover:text-sky-300">Instagram</a>
+          <a href="#"
+            class="px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200 hover:border-sky-400 hover:text-sky-300">YouTube</a>
+        </div>
+      </div>
     </div>
+  </footer>
 
-    <!-- Categories Section -->
-    <section id="categories" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 urdu-text">پاپولر کیٹگریز</h2>
-                <p class="text-xl text-gray-600 urdu-text">اپنی پسند کی کیٹگری منتخب کریں</p>
-            </div>
-            
-            <div class="category-carousel">
-                <div class="category-item bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl overflow-hidden shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                         alt="Mobile Phones" class="w-full h-48 object-cover">
-                    <div class="p-6 text-white">
-                        <h3 class="text-xl font-bold urdu-text mb-2">موبائل فونز</h3>
-                        <p class="text-sm urdu-text">سمارٹ فونز کی بہترین قیمتیں</p>
-                        <button class="mt-4 w-full bg-white bg-opacity-20 hover:bg-opacity-30 py-2 rounded-lg transition-colors urdu-text">
-                            دیکھیں
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="category-item bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl overflow-hidden shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                         alt="Laptops" class="w-full h-48 object-cover">
-                    <div class="p-6 text-white">
-                        <h3 class="text-xl font-bold urdu-text mb-2">لیپ ٹاپ</h3>
-                        <p class="text-sm urdu-text">بہترین پرفارمنس، بہترین قیمت</p>
-                        <button class="mt-4 w-full bg-white bg-opacity-20 hover:bg-opacity-30 py-2 rounded-lg transition-colors urdu-text">
-                            دیکھیں
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="category-item bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl overflow-hidden shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                         alt="Home Appliances" class="w-full h-48 object-cover">
-                    <div class="p-6 text-white">
-                        <h3 class="text-xl font-bold urdu-text mb-2">ہوم اپلائنسز</h3>
-                        <p class="text-sm urdu-text">گھر کے لیے بہترین آلات</p>
-                        <button class="mt-4 w-full bg-white bg-opacity-20 hover:bg-opacity-30 py-2 rounded-lg transition-colors urdu-text">
-                            دیکھیں
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="category-item bg-gradient-to-r from-blue-500 to-teal-500 rounded-2xl overflow-hidden shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                         alt="Fashion" class="w-full h-48 object-cover">
-                    <div class="p-6 text-white">
-                        <h3 class="text-xl font-bold urdu-text mb-2">فیشن</h3>
-                        <p class="text-sm urdu-text">نئی طرز کے کپڑے</p>
-                        <button class="mt-4 w-full bg-white bg-opacity-20 hover:bg-opacity-30 py-2 rounded-lg transition-colors urdu-text">
-                            دیکھیں
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Category dropdown
+    const categoryToggle = document.getElementById('categoryToggle');
+    const categoryMenu = document.getElementById('categoryMenu');
+    const categoryLabel = document.getElementById('categoryLabel');
+    let currentCategory = 'all';
+
+    if (categoryToggle) {
+      categoryToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        categoryMenu.classList.toggle('hidden');
+      });
+      document.addEventListener('click', () => {
+        categoryMenu.classList.add('hidden');
+      });
+      categoryMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const btn = e.target.closest('button[data-category]');
+        if (!btn) return;
+        currentCategory = btn.getAttribute('data-category');
+        categoryLabel.textContent = btn.textContent.trim();
+        categoryMenu.classList.add('hidden');
+        renderProducts();
+      });
+    }
+
+    // Demo products data
+    const products = [
+      { name: 'Sugar 1kg / چینی 1کلو', category: 'grocery', city: 'Karachi', area: 'Gulshan-e-Iqbal', distanceKm: 1.2, price: 155 },
+      { name: 'Sugar 1kg / چینی 1کلو', category: 'grocery', city: 'Karachi', area: 'Bahadurabad', distanceKm: 3.1, price: 150 },
+      { name: 'Sugar 1kg / چینی 1کلو', category: 'grocery', city: 'Karachi', area: 'Nazimabad', distanceKm: 4.2, price: 148 },
+      { name: 'Milk 1L Pack / دودھ 1لیٹر', category: 'grocery', city: 'Lahore', area: 'Model Town', distanceKm: 0.8, price: 235 },
+      { name: 'Milk 1L Pack / دودھ 1لیٹر', category: 'grocery', city: 'Lahore', area: 'Johar Town', distanceKm: 2.4, price: 230 },
+      { name: 'Tomato 1kg / ٹماٹر 1کلو', category: 'vegetables', city: 'Karachi', area: 'Saddar', distanceKm: 2.0, price: 95 },
+      { name: 'Potato 1kg / آلو 1کلو', category: 'vegetables', city: 'Karachi', area: 'Gulshan-e-Iqbal', distanceKm: 1.2, price: 75 },
+      { name: 'Chicken 1kg / چکن 1کلو', category: 'meat', city: 'Lahore', area: 'Township', distanceKm: 1.5, price: 495 },
+      { name: 'Beef 1kg / بیف 1کلو', category: 'meat', city: 'Karachi', area: 'Liaquatabad', distanceKm: 3.7, price: 780 },
+      { name: 'Cooking Oil 1L / کوکنگ آئل', category: 'grocery', city: 'Karachi', area: 'Defence', distanceKm: 5.2, price: 540 },
+      { name: 'Smartphone 6.5" 128GB', category: 'electronics', city: 'Karachi', area: 'Saddar Mobile Market', distanceKm: 6.0, price: 46500 },
+      { name: 'Smartphone 6.5" 128GB', category: 'electronics', city: 'Lahore', area: 'Hall Road', distanceKm: 4.5, price: 45990 },
+      { name: 'Shampoo 340ml / شیمپو', category: 'personal', city: 'Karachi', area: 'Gulistan-e-Johar', distanceKm: 2.8, price: 430 },
+      { name: 'Washing Powder 2kg / واشنگ پاؤڈر', category: 'grocery', city: 'Lahore', area: 'DHA', distanceKm: 5.0, price: 880 }
+    ];
+
+    const productRowsEl = document.getElementById('productRows');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+
+    function distanceBadge(km) {
+      if (km <= 1.5) return '<span class="px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 text-[0.6rem]">Near</span>';
+      if (km <= 3.5) return '<span class="px-1.5 py-0.5 rounded-full bg-sky-500/10 text-sky-300 text-[0.6rem]">Medium</span>';
+      return '<span class="px-1.5 py-0.5 rounded-full bg-slate-700/70 text-slate-200 text-[0.6rem]">Far</span>';
+    }
+
+    function renderProducts() {
+      const q = searchInput.value.trim().toLowerCase();
+      let filtered = products.slice();
+
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === currentCategory);
+      }
+      if (q) {
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(q));
+      }
+
+      // sort by distance first, then price
+      filtered.sort((a, b) => {
+        if (a.distanceKm === b.distanceKm) return a.price - b.price;
+        return a.distanceKm - b.distanceKm;
+      });
+
+      productRowsEl.innerHTML = filtered.map(p => `
+        <div class="product-row grid grid-cols-12 px-2 sm:px-3 py-2 text-[0.7rem] sm:text-xs">
+          <div class="col-span-5 flex flex-col">
+            <span class="text-slate-100">${p.name}</span>
+            <span class="text-slate-500">${p.city}</span>
+          </div>
+          <div class="col-span-3 flex flex-col text-center">
+            <span class="text-slate-200">${p.area}</span>
+          </div>
+          <div class="col-span-2 flex flex-col items-center">
+            <span class="text-slate-200">${p.distanceKm.toFixed(1)} km</span>
+            ${distanceBadge(p.distanceKm)}
+          </div>
+          <div class="col-span-2 flex flex-col text-right">
+            <span class="text-emerald-400 font-semibold">Rs ${p.price.toLocaleString()}</span>
+          </div>
         </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 urdu-text">بہترین ڈیلز</h2>
-                <p class="text-xl text-gray-600 urdu-text">سب سے کم قیمتیں مل رہی ہیں</p>
-            </div>
-            
-            <div id="productsGrid" class="product-grid">
-                <!-- Products will be loaded here by JavaScript -->
-            </div>
+      `).join('') || `
+        <div class="px-3 py-4 text-center text-[0.75rem] text-slate-500">
+          No items found for your search / ابھی اس تلاش کے لیے ڈیٹا موجود نہیں۔
         </div>
-    </section>
+      `;
+    }
 
-    <!-- Vertical Scrolling Ads -->
-    <div class="bg-white py-8">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="scrolling-ads">
-                <div class="inline-flex space-x-4">
-                    <div class="banner-placeholder w-48 h-64 rounded-lg flex-shrink-0 mx-2 flex items-center justify-center text-gray-500">
-                        <div class="text-center">
-                            <i class="fas fa-mobile-alt text-4xl mb-2"></i>
-                            <p class="text-sm">موبائل ایڈ</p>
-                        </div>
-                    </div>
-                    <div class="banner-placeholder w-48 h-64 rounded-lg flex-shrink-0 mx-2 flex items-center justify-center text-gray-500">
-                        <div class="text-center">
-                            <i class="fas fa-laptop text-4xl mb-2"></i>
-                            <p class="text-sm">لیپ ٹاپ ایڈ</p>
-                        </div>
-                    </div>
-                    <div class="banner-placeholder w-48 h-64 rounded-lg flex-shrink-0 mx-2 flex items-center justify-center text-gray-500">
-                        <div class="text-center">
-                            <i class="fas fa-tv text-4xl mb-2"></i>
-                            <p class="text-sm">ٹی وی ایڈ</p>
-                        </div>
-                    </div>
-                    <div class="banner-placeholder w-48 h-64 rounded-lg flex-shrink-0 mx-2 flex items-center justify-center text-gray-500">
-                        <div class="text-center">
-                            <i class="fas fa-home text-4xl mb-2"></i>
-                            <p class="text-sm">ہوم ایڈ</p>
-                        </div>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="banner-placeholder w-48 h-64 rounded-lg flex-shrink-0 mx-2 flex items-center justify-center text-gray-500">
-                        <div class="text-center">
-                            <i class="fas fa-mobile-alt text-4xl mb-2"></i>
-                            <p class="text-sm">موبائل ایڈ</p>
-                        </div>
-                    </div>
-                    <div class="banner-placeholder w-48 h-64 rounded-lg flex-shrink-0 mx-2 flex items-center justify-center text-gray-500">
-                        <div class="text-center">
-                            <i class="fas fa-laptop text-4xl mb-2"></i>
-                            <p class="text-sm">لیپ ٹاپ ایڈ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    if (searchBtn) {
+      searchBtn.addEventListener('click', renderProducts);
+    }
+    if (searchInput) {
+      searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') renderProducts();
+      });
+    }
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 urdu-text">بلاگ</h2>
-                <p class="text-xl text-gray-600 urdu-text">تازہ ترین خبروں اور گائیڈز سے آگاہ رہیں</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <article class="card-hover bg-gray-50 rounded-2xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Shopping Tips" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 urdu-text">آن لائن شاپنگ کے 5 بہترین ٹپس</h3>
-                        <p class="text-gray-600 mb-4 urdu-text">آن لائن شاپنگ کرتے وقت احتیاط برتیں اور بہترین ڈیلز حاصل کریں...</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">2 دن پہلے</span>
-                            <a href="#" class="text-green-600 hover:text-green-700 font-medium urdu-text">مزید پڑھیں</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="card-hover bg-gray-50 rounded-2xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3133?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Price Trends" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 urdu-text">2024 میں موبائل کی قیمتیں</h3>
-                        <p class="text-gray-600 mb-4 urdu-text">موبائل فونز کی مارکیٹ میں کیا ہو رہا ہے؟ نئی رپورٹ...</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">5 دن پہلے</span>
-                            <a href="#" class="text-green-600 hover:text-green-700 font-medium urdu-text">مزید پڑھیں</a>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="card-hover bg-gray-50 rounded-2xl overflow-hidden shadow-md">
-                    <img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Deals" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 urdu-text">اس ہفتے کی بہترین ڈیلز</h3>
-                        <p class="text-gray-600 mb-4 urdu-text">اپنے پسندیدہ برانڈز پر بہترین ڈسکاؤنٹس حاصل کریں...</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-500">1 ہفتہ پہلے</span>
-                            <a href="#" class="text-green-600 hover:text-green-700 font-medium urdu-text">مزید پڑھیں</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+    // Initial render
+    renderProducts();
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-4xl font-bold text-gray-900 mb-6 urdu-text">ہمارے بارے میں</h2>
-                    <p class="text-lg text-gray-600 mb-6 urdu-text">
-                        قِیمَت پوائنٹ پاکستان کا نمبر ون پرائس کمپئریزن پلیٹ فارم ہے جہاں آپ ہزاروں پروڈکٹس کی قیمتیں ایک جگہ پر موازنہ کر سکتے ہیں۔ 
-                        ہمارا مشن پاکستانی صارفین کو بہترین قیمتیں حاصل کرنے میں مدد کرنا ہے۔
-                    </p>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="text-center p-4">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <i class="fas fa-users text-2xl text-green-600"></i>
-                            </div>
-                            <h3 class="font-semibold urdu-text mb-1">50,000+ صارفین</h3>
-                            <p class="text-sm text-gray-600 urdu-text">ہر ماہ استعمال کرنے والے</p>
-                        </div>
-                        <div class="text-center p-4">
-                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <i class="fas fa-store text-2xl text-yellow-600"></i>
-                            </div>
-                            <h3 class="font-semibold urdu-text mb-1">1000+ اسٹورز</h3>
-                            <p class="text-sm text-gray-600 urdu-text">پاکستان بھر میں</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="About Us" class="rounded-2xl shadow-2xl w-full">
-                    <div class="absolute top-8 right-8 bg-green-600 text-white p-4 rounded-xl">
-                        <i class="fas fa-chart-line text-2xl mb-2"></i>
-                        <p class="font-semibold urdu-text">بہترین قیمتیں ہمیشہ</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4 urdu-text">ہم سے رابطہ کریں</h2>
-                <p class="text-xl text-gray-600 urdu-text">کوئی سوال؟ ہم سے رابطہ کریں</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <form class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2 urdu-text">نام</label>
-                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2 urdu-text">ای میل</label>
-                        <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2 urdu-text">پیغام</label>
-                        <textarea rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-medium urdu-text">
-                        <i class="fas fa-paper-plane mr-2"></i>پیغام بھیجیں
-                    </button>
-                </form>
-                
-                <div class="space-y-6">
-                    <div class="bg-gray-50 p-6 rounded-xl">
-                        <h3 class="text-lg font-semibold mb-3 urdu-text">ہمارا دفتر</h3>
-                        <p class="text-gray-600 urdu-text">لاہور، پنجاب، پاکستان</p>
-                        <p class="text-gray-600 urdu-text">پوسٹل کوڈ: 54000</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-xl">
-                        <h3 class="text-lg font-semibold mb-3 urdu-text">فون</h3>
-                        <p class="text-gray-600 mb-2">+92 300 1234567</p>
-                        <p class="text-gray-600 urdu-text">ہفتے میں 7 دن، 9AM - 9PM</p>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-6 rounded-xl">
-                        <h3 class="text-lg font-semibold mb-3 urdu-text">ای میل</h3>
-                        <div class="space-y-2">
-                            <p class="text-gray-600">support@qeematpoint.pk</p>
-                            <p class="text-gray-600">info@qeematpoint.pk</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-4 pt-4">
-                        <a href="#" class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center hover:bg-green-700 transition-colors">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    // Balloons generation
+    const balloonLayer = document.querySelector('.balloon-layer');
+    const commodityIcons = ['🍅', '🥔', '🍗', '🥛', '🍚', '📱', '🧴', '🧼', '🥦', '🍊', '🥩', '🛢️'];
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i class="fas fa-tags text-2xl text-green-400"></i>
-                        <h3 class="text-2xl font-bold urdu-text">قِیمَت پوائنٹ</h3>
-                    </div>
-                    <p class="text-gray-400 urdu-text">بہترین قیمتیں، بہترین خریداری - پاکستان بھر میں!</p>
-                    <div class="flex space-x-4 mt-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 urdu-text">جلد رسائی</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">ہوم</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">کیٹگریز</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">پروڈکٹس</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">بلاگ</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 urdu-text">مدد</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">رابطہ کریں</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">حمایت</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">پرائیویسی پالیسی</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors urdu-text">شرائط و ضوابط</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 urdu-text">نیوز لیٹر</h4>
-                    <p class="text-gray-400 mb-4 urdu-text">تازہ ترین ڈیلز اور آفرز کے لیے سبسکرائب کریں</p>
-                    <div class="flex">
-                        <input type="email" placeholder="اپنا ای میل درج کریں" 
-                               class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg text-white placeholder-gray-400 focus:outline-none">
-                        <button class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-r-lg transition-colors urdu-text">
-                            سبسکرائب
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p class="urdu-text">&copy; 2024 قِیمَت پوائنٹ۔ تمام حقوق محفوظ ہیں۔</p>
-            </div>
-        </div>
-    </footer>
+    function createBalloon() {
+      if (!balloonLayer) return;
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      const icon = document.createElement('div');
+      icon.className = 'balloon-icon';
+      icon.textContent = commodityIcons[Math.floor(Math.random() * commodityIcons.length)];
+      b.style.left = Math.random() * 100 + 'vw';
+      const duration = 12 + Math.random() * 8;
+      b.style.animationDuration = duration + 's';
+      balloonLayer.appendChild(b);
+      b.appendChild(icon);
 
-    <!-- Sample Products Data -->
-    <script>
-        const products = [
-            {
-                id: 1,
-                name: "Samsung Galaxy S23",
-                price: 185000,
-                originalPrice: 210000,
-                image: "https://images.unsplash.com/photo-1592899677979-9e1c931a8ae1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "Daraz",
-                location: "لاہور",
-                category: "mobile"
-            },
-            {
-                id: 2,
-                name: "iPhone 14 Pro",
-                price: 245000,
-                originalPrice: 265000,
-                image: "https://images.unsplash.com/photo-1634567985808-1b32294a8a9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "PriceOye",
-                location: "کراچی",
-                category: "mobile"
-            },
-            {
-                id: 3,
-                name: "MacBook Air M2",
-                price: 215000,
-                originalPrice: 235000,
-                image: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "CZone",
-                location: "اسلام آباد",
-                category: "laptop"
-            },
-            {
-                id: 4,
-                name: "Samsung 55\" QLED TV",
-                price: 145000,
-                originalPrice: 165000,
-                image: "https://images.unsplash.com/photo-1593797360296-b12f95a976ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "ElectroHub",
-                location: "لاہور",
-                category: "tv"
-            },
-            {
-                id: 5,
-                name: "Sony WH-1000XM5",
-                price: 45000,
-                originalPrice: 52000,
-                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "TechBit",
-                location: "کراچی",
-                category: "electronics"
-            },
-            {
-                id: 6,
-                name: "Nike Air Max 270",
-                price: 12500,
-                originalPrice: 15000,
-                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "Outfitters",
-                location: "لاہور",
-                category: "fashion"
-            },
-            {
-                id: 7,
-                name: "LG Washing Machine",
-                price: 65000,
-                originalPrice: 72000,
-                image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "HomePlus",
-                location: "اسلام آباد",
-                category: "home"
-            },
-            {
-                id: 8,
-                name: "Canon EOS R6",
-                price: 285000,
-                originalPrice: 310000,
-                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-                store: "CameraWorld",
-                location: "کراچی",
-                category: "electronics"
-            }
-        ];
+      // Blow near top
+      const blowTime = (duration - 1.2) * 1000;
+      const timer = setTimeout(() => {
+        b.classList.add('blow');
+      }, blowTime);
 
-        // Function to create product card
-        function createProductCard(product) {
-            const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
-            return `
-                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-                    <div class="relative">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
-                        <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">
-                            ${discount}% آف
-                        </div>
-                        <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">
-                            ${product.store}
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold mb-2 urdu-text">${product.name}</h3>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="text-2xl font-bold text-green-600">Rs. ${product.price.toLocaleString()}</div>
-                            <div class="text-sm text-gray-500 line-through">Rs. ${product.originalPrice.toLocaleString()}</div>
-                        </div>
-                        <div class="flex items-center justify-between text-sm text-gray-600 mb-4">
-                            <span><i class="fas fa-map-marker-alt text-green-500 mr-1"></i>${product.location}</span>
-                            <span><i class="fas fa-star text-yellow-400 mr-1"></i>4.8</span>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button class="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors font-medium urdu-text">
-                                <i class="fas fa-shopping-cart mr-2"></i>خریداری
-                            </button>
-                            <button class="p-2 text-gray-400 hover:text-green-600 transition-colors">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
+      b.addEventListener('animationend', () => {
+        clearTimeout(timer);
+        b.remove();
+      });
+    }
 
-        // Load initial products (sorted by price, Lahore first)
-        function loadProducts(category = '') {
-            const productsGrid = document.getElementById('productsGrid');
-            let filteredProducts = [...products];
-            
-            if (category) {
-                filteredProducts = filteredProducts.filter(p => p.category === category);
-            }
-            
-            // Sort by price ascending, Lahore first
-            filteredProducts.sort((a, b) => {
-                if (a.location === 'لاہور' && b.location !== 'لاہور') return -1;
-                if (b.location === 'لاہور' && a.location !== 'لاہور') return 1;
-                return a.price - b.price;
-            });
-            
-            productsGrid.innerHTML = filteredProducts.map(createProductCard).join('');
-        }
-
-        // Search functionality
-        document.getElementById('searchBtn').addEventListener('click', function() {
-            const category = document.getElementById('categorySelect').value;
-            loadProducts(category);
-        });
-
-        document.getElementById('categorySelect').addEventListener('change', function() {
-            const category = this.value;
-            loadProducts(category);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        document.querySelector('.md\\:hidden').addEventListener('click', function() {
-            // Mobile menu implementation
-            console.log('Mobile menu toggled');
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('شکریہ! آپ کا پیغام بھیج دیا گیا ہے۔');
-            this.reset();
-        });
-
-        // Initialize
-        loadProducts();
-    </script>
+    // Initial balloons
+    for (let i = 0; i < 8; i++) {
+      setTimeout(createBalloon, i * 1200);
+    }
+    // Continuous balloons
+    setInterval(createBalloon, 2800);
+  </script>
 </body>
+
 </html>
