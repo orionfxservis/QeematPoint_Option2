@@ -1,0 +1,89 @@
+:root {
+    --primary-color: #006600;     /* Pakistan Green */
+    --secondary-color: #ffffff;   /* White */
+    --accent-color: #D4AF37;      /* Gold */
+    --bg-color: #f8fafc;          /* Light background */
+    --card-bg: #ffffff;           /* Cards */
+    --text-color: #1a1a1a;        /* Main text */
+    --border-color: #e5e7eb;      /* Light border */
+}
+
+/* Keep everything same, only slight polish */
+
+body {
+    background: var(--light-bg);
+}
+
+/* Hero Gradient (same style, better colors) */
+.hero-gradient {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 50%, var(--secondary-gold) 100%);
+}
+
+/* Buttons (ONLY color improved) */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #004d00;
+}
+
+.btn-accent {
+    background-color: var(--accent-color);
+    color: #000;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: #004d00;
+}
+
+input, select {
+    border: 1px solid var(--border-color);
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Hover polish */
+.bg-green-600:hover {
+    background-color: var(--dark-green) !important;
+}
+
+/* Accent (discount / highlights) */
+.bg-red-500 {
+    background-color: var(--accent-red) !important;
+}
+
+/* Gold highlight (icons / premium feel) */
+.text-yellow-300,
+.text-yellow-400 {
+    color: var(--secondary-gold) !important;
+}
+
+/* Cards hover same, just smoother */
+.card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 30px rgba(0, 0, 0, 0.12);
+}
