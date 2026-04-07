@@ -363,6 +363,11 @@
   background: linear-gradient(to top, #020617, transparent);
 }
 
+    /* Headings font */
+    h1, h2, h3, h4, h5, h6, .section-title {
+      font-family: 'Playfair Display', serif;
+    }
+
     /* Section titles */
     .section-title {
   font-size: 1.6rem;

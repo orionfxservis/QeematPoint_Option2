@@ -61,6 +61,7 @@
     }
 
     function renderProducts() {
+      if (!productRowsEl) return;
       const q = searchInput.value.trim().toLowerCase();
       let filtered = products.slice();
 

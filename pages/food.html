@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Food Deals - Qeemat Point - قِیمَت پوائنٹ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* Custom simple scrollbar for the list */
+    .food-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .food-scroll::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 4px;
+    }
+    .food-scroll::-webkit-scrollbar-thumb {
+      background: rgba(234, 179, 8, 0.4);
+      border-radius: 4px;
+    }
+    .food-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(234, 179, 8, 0.6);
+    }
+  </style>
+</head>
+
+<body class="text-slate-100 min-h-screen flex flex-col">
+  <!-- Floating Balloon Layer -->
+  <div class="balloon-layer" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../index.html" class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center shadow-lg shadow-emerald-500/40">
+            <span class="text-xl font-black text-slate-950">Q</span>
+          </div>
+          <div class="leading-tight">
+            <div class="flex items-end gap-1">
+              <span class="text-lg sm:text-xl font-bold gradient-text">Qeemat Point</span>
+              <span class="text-xs text-slate-400 hidden sm:inline">قِیمَت پوائنٹ</span>
+            </div>
+            <p class="text-xs text-slate-400 hidden sm:block">Smart Price Comparison</p>
+          </div>
+        </a>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="../index.html#home" class="nav-link hover:text-emerald-400 transition text-slate-200">ہوم / Home</a>
+        <a href="../index.html#categories" class="nav-link hover:text-sky-300 text-slate-200 transition">کیٹگریز / Categories</a>
+        <a href="../index.html#deals" class="nav-link hover:text-sky-300 text-slate-200 transition">بہترین قیمتیں / Best Prices</a>
+        <a href="../index.html#blog" class="nav-link hover:text-sky-300 text-slate-200 transition">بلاگ / Blog</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="mobileMenuBtn"
+          class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-700 bg-slate-900/70 text-slate-100">
+          <span class="sr-only">Menu</span>
+          ☰
+        </button>
+      </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
+        <a href="../index.html#home" class="nav-link w-fit py-1 text-slate-200">ہوم / Home</a>
+        <a href="../index.html#categories" class="nav-link w-fit py-1 text-slate-200">کیٹگریز / Categories</a>
+        <a href="../index.html#deals" class="nav-link w-fit py-1 text-slate-200">بہترین قیمتیں / Best Prices</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 relative z-10 pt-6 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Search Panel -->
+      <div class="glass-card p-4 sm:p-5 mb-8 relative">
+        <div class="flex flex-col sm:flex-row gap-4 sm:items-center justify-between mb-4">
+          <div>
+            <h2 class="section-title text-xl sm:text-2xl text-yellow-400 mb-1">
+              Food Deals & Restaurants
+            </h2>
+            <p class="text-[0.75rem] text-slate-400">
+              Nearby places first. We display trusted and verified listings around you.
+            </p>
+          </div>
+          <button id="headerLocationBtn"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 shadow-md">
+            📍 Location Active
+          </button>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+          <div class="flex-1 relative">
+            <input id="foodSearchInput" type="text"
+              placeholder="مثال: پیزا، برگر، دیسی...  |  e.g. Pizza, Burger, Desi"
+              class="w-full bg-slate-900/70 border border-slate-700 rounded-2xl text-sm px-4 py-3 pr-10 outline-none focus:ring-2 focus:ring-yellow-500/70 focus:border-yellow-400 text-slate-100 placeholder:text-slate-500" />
+            <span class="absolute left-4 top-3.5 text-slate-500">🔍</span>
+          </div>
+          <button id="foodSearchBtn"
+            class="px-5 py-3 rounded-2xl bg-gradient-to-r from-yellow-500 to-yellow-600 text-yellow-950 font-semibold text-sm shadow-lg shadow-yellow-500/40 hover:from-yellow-400 hover:to-yellow-500 whitespace-nowrap transition">
+            Search / تلاش
+          </button>
+        </div>
+      </div>
+
+      <!-- Two-Column Layout -->
+      <div class="flex flex-col lg:flex-row gap-6">
+        
+        <!-- Left Column: Items List -->
+        <div class="lg:w-1/3 flex flex-col gap-3 h-[600px] overflow-y-auto pr-2 food-scroll" id="foodListings">
+           <!-- Dynamic Content from JS -->
+        </div>
+        
+        <!-- Right Column: Featured Ad -->
+        <div class="lg:w-2/3">
+          <div class="glass-card p-0 sticky top-24 overflow-hidden" id="featuredAdContainer" style="min-height: 500px;">
+             <!-- Initial Empty State -->
+             <div class="h-full flex flex-col items-center justify-center py-20 text-slate-400" id="featuredPlaceholder">
+               <span class="text-6xl mb-4 opacity-50">🍔</span>
+               <p class="text-sm">Select any item from the left to view complete details, location, and contact options.</p>
+             </div>
+             
+             <!-- Dynamic Detailed Content from JS (Hidden Initial) -->
+             <div id="featuredContent" class="hidden h-full flex flex-col">
+               <!-- Image Section -->
+               <div class="relative h-64 sm:h-72 w-full bg-slate-900">
+                 <img id="fImg" src="" alt="Product" class="w-full h-full object-cover opacity-90" />
+                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                 <span id="fDistance" class="absolute top-4 right-4 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur border border-slate-700 text-xs font-semibold text-yellow-400">
+                   1.2 km away
+                 </span>
+               </div>
+               
+               <!-- Details Section -->
+               <div class="p-5 sm:p-7 flex-1 flex flex-col">
+                 <div class="flex justify-between items-start mb-2">
+                   <h2 id="fName" class="text-2xl sm:text-3xl font-bold section-title text-slate-50 mb-1">Burger Name</h2>
+                   <div class="text-right">
+                     <div id="fPrice" class="text-2xl font-bold text-emerald-400">Rs. 850</div>
+                   </div>
+                 </div>
+                 
+                 <div class="flex items-center gap-2 text-sm text-slate-400 mb-6">
+                   <span>📍</span>
+                   <span id="fLocation">Branch Area, City</span>
+                 </div>
+                 
+                 <div class="mb-8 flex-1">
+                   <h4 class="text-sm font-semibold text-slate-200 mb-2 border-b border-slate-800 pb-1">Product Details / تفصیلات</h4>
+                   <p id="fDesc" class="text-sm text-slate-400 leading-relaxed">
+                     Detailed product description goes here. Fresh ingredients, deals, and anything else the vendor provided.
+                   </p>
+                 </div>
+                 
+                 <div class="grid grid-cols-2 gap-4 mt-auto">
+                   <button id="fCallBtn" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-semibold text-sm shadow-lg shadow-sky-500/30 hover:from-sky-500 hover:to-blue-500 transition">
+                     📞 Call Now
+                   </button>
+                   <button id="fWhatsAppBtn" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/30 hover:from-emerald-500 hover:to-green-500 transition">
+                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.182-2.589-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.072.043.418-.101.824z"></path></svg>
+                     WhatsApp
+                   </button>
+                 </div>
+               </div>
+             </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+        <div class="text-[0.75rem] text-slate-500">
+          © <span id="year"></span> Qeemat Point. All rights reserved. | Built for Pakistan 🇵🇰
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/script.js"></script>
+  <script src="../js/food.js"></script>
+</body>
+</html>
