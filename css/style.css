@@ -420,3 +420,41 @@
 .search-panel:hover::before {
   opacity: 1;
 }
+
+/* Visitor Counter Animation */
+.visitor-counter {
+  position: relative;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.6);
+  overflow: hidden;
+  display: flex;
+}
+
+.visitor-moving-outline {
+  position: absolute;
+  width: 250%;
+  height: 250%;
+  top: -75%;
+  left: -75%;
+  background: conic-gradient(transparent, transparent, transparent, #38bdf8, #22c55e);
+  animation: rotate-outline 3s linear infinite;
+  z-index: 0;
+}
+
+.visitor-counter-inner {
+  position: relative;
+  background: #020617;
+  border-radius: 999px;
+  z-index: 1;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@keyframes rotate-outline {
+  100% {
+    transform: rotate(360deg);
+  }
+}

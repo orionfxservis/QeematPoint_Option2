@@ -89,6 +89,111 @@ const foodDeals = [
     phone: "111532532",
     whatsapp: "",
     tags: ["Fast Food", "Burger"]
+  },
+  {
+    id: 7,
+    name: "Haleem",
+    restaurant: "Mazaydar Haleem",
+    area: "Yaseenabad",
+    city: "Karachi",
+    distanceKm: 3.5,
+    price: 450,
+    originalPrice: null,
+    image: "../images/haleem.png",
+    description: "Famous thick and spicy Haleem made with pure ghee and rich lentils. Topped with fried onions, ginger, and lemon.",
+    phone: "03001239988",
+    whatsapp: "03001239988",
+    tags: ["Desi", "Haleem"]
+  },
+  {
+    id: 8,
+    name: "Broast & Burgers Combo",
+    restaurant: "Jans Broast",
+    area: "Saddar & Clifton",
+    city: "Karachi",
+    distanceKm: 4.2,
+    price: 1350,
+    originalPrice: 1600,
+    image: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=600&q=80",
+    description: "A complete deal featuring crispy fried chicken broast chunks and a juicy burger, served with special garlic sauce and fries.",
+    phone: "02135678901",
+    whatsapp: "03456789012",
+    tags: ["Broast", "Fast Food"]
+  },
+  {
+    id: 9,
+    name: "Zinger Burger",
+    restaurant: "Super Burger & Broast",
+    area: "Ancholi Block 17",
+    city: "Karachi",
+    distanceKm: 5.1,
+    price: 450,
+    originalPrice: null,
+    image: "https://images.unsplash.com/photo-1586816001966-79b736744398?auto=format&fit=crop&w=600&q=80",
+    description: "Delicious and highly affordable crispy zinger burger wrapped in soft buns with creamy mayo.",
+    phone: "03212345678",
+    whatsapp: "03212345678",
+    tags: ["Burger", "Zinger"]
+  },
+  {
+    id: 10,
+    name: "Famous Bun Kabab",
+    restaurant: "Burns Road's Bun Kabab",
+    area: "Frere Chowk",
+    city: "Karachi",
+    distanceKm: 6.5,
+    price: 150,
+    originalPrice: 200,
+    image: "../images/bun-kabab.png",
+    description: "The classic and legendary Burns Road bun kabab with spicy lentil patty, fluffy egg, and signature green chutney.",
+    phone: "03009998887",
+    whatsapp: "",
+    tags: ["Street Food", "Desi", "Snacks"]
+  },
+  {
+    id: 11,
+    name: "Special BBQ Platter",
+    restaurant: "Ghaffar Kabab House",
+    area: "Port Grand",
+    city: "Karachi",
+    distanceKm: 8.2,
+    price: 2400,
+    originalPrice: 2800,
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
+    description: "A huge assortment of BBQ items including Chicken Tikka, Malai Boti, Seekh Kabab, and Fish Tikka, served with fresh naan and chutneys.",
+    phone: "03111111222",
+    whatsapp: "03111111222",
+    tags: ["BBQ", "Desi", "Platter"]
+  },
+  {
+    id: 12,
+    name: "Beef Chapli Kabab",
+    restaurant: "Peshawari Chapli Kabab",
+    area: "Hassan Square",
+    city: "Karachi",
+    distanceKm: 2.1,
+    price: 300,
+    originalPrice: null,
+    image: "https://images.unsplash.com/photo-1606471191009-63994c53433b?auto=format&fit=crop&w=600&q=80",
+    description: "Authentic oversized beef chapli kabab fried in beef tallow, served with traditional peshawari naan.",
+    phone: "03444445555",
+    whatsapp: "",
+    tags: ["Desi", "Beef", "Peshawari"]
+  },
+  {
+    id: 13,
+    name: "Shawarma Wrap",
+    restaurant: "Syrian Shawarma",
+    area: "Sindhi Muslim",
+    city: "Karachi",
+    distanceKm: 3.8,
+    price: 350,
+    originalPrice: 400,
+    image: "https://images.unsplash.com/photo-1529124235471-1d5754ea8f0d?auto=format&fit=crop&w=600&q=80",
+    description: "Authentic middle-eastern shawarma with garlic sauce, pickles, and properly marinated grilled chicken wrapped in soft pita.",
+    phone: "03009876543",
+    whatsapp: "03009876543",
+    tags: ["Fast Food", "Arabian", "Wrap"]
   }
 ];
 
@@ -106,7 +211,23 @@ const fPrice = document.getElementById('fPrice');
 const fLocation = document.getElementById('fLocation');
 const fDesc = document.getElementById('fDesc');
 const fCallBtn = document.getElementById('fCallBtn');
-const fWhatsAppBtn = document.getElementById('fWhatsAppBtn');
+const fOrderBtn = document.getElementById('fOrderBtn');
+
+// Order Modal Elements
+const orderModal = document.getElementById('orderModal');
+const closeOrderModalBtn = document.getElementById('closeOrderModal');
+const cancelOrderBtn = document.getElementById('cancelOrderBtn');
+const orderForm = document.getElementById('orderForm');
+
+const orderDateTime = document.getElementById('orderDateTime');
+const orderRestaurant = document.getElementById('orderRestaurant');
+const orderProductName = document.getElementById('orderProductName');
+const orderRestAddress = document.getElementById('orderRestAddress');
+const orderContact = document.getElementById('orderContact');
+const orderRate = document.getElementById('orderRate');
+const orderRateValue = document.getElementById('orderRateValue');
+const orderQty = document.getElementById('orderQty');
+const orderTotalAmount = document.getElementById('orderTotalAmount');
 
 let selectedFoodId = null;
 
@@ -190,7 +311,7 @@ function selectFoodItem(id) {
     fLocation.textContent = `${item.restaurant}, ${item.area}, ${item.city}`;
     fDesc.textContent = item.description;
 
-    // Contact Buttons Setup
+    // Contact / Order Buttons Setup
     if (item.phone) {
       fCallBtn.classList.remove('hidden');
       fCallBtn.onclick = () => window.location.href = `tel:${item.phone}`;
@@ -198,16 +319,70 @@ function selectFoodItem(id) {
       fCallBtn.classList.add('hidden');
     }
 
-    if (item.whatsapp) {
-      fWhatsAppBtn.classList.remove('hidden');
-      fWhatsAppBtn.onclick = () => window.open(`https://wa.me/92${item.whatsapp.substring(1)}?text=Hi, I want to order ${encodeURIComponent(item.name)} from Qeemat Point.`, '_blank');
-    } else {
-      fWhatsAppBtn.classList.add('hidden');
+    if (fOrderBtn) {
+      fOrderBtn.onclick = openOrderModal;
     }
   }
   
   // Re-render list to show active state
   renderFoodList();
+}
+
+function openOrderModal() {
+  const item = foodDeals.find(f => f.id === selectedFoodId);
+  if (!item) return;
+
+  // Set Date Time
+  const now = new Date();
+  orderDateTime.textContent = now.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+
+  // Populate Fields
+  orderRestaurant.textContent = item.restaurant;
+  orderProductName.textContent = item.name;
+  orderRestAddress.textContent = item.area + ", " + item.city;
+  orderContact.textContent = item.phone || "N/A";
+  
+  orderRate.value = item.price.toLocaleString();
+  orderRateValue.value = item.price;
+  orderQty.value = 1;
+  
+  updateOrderTotal();
+
+  orderModal.classList.remove('hidden');
+}
+
+function closeOrderModal() {
+  orderModal.classList.add('hidden');
+  orderForm.reset();
+}
+
+function updateOrderTotal() {
+  const rate = parseInt(orderRateValue.value) || 0;
+  let qty = parseInt(orderQty.value) || 1;
+  if(qty < 1) { qty = 1; orderQty.value = 1; }
+  
+  const total = rate * qty;
+  orderTotalAmount.textContent = "Rs. " + total.toLocaleString();
+}
+
+// Order Form Listeners
+if (orderQty) {
+  orderQty.addEventListener('input', updateOrderTotal);
+}
+if (closeOrderModalBtn) closeOrderModalBtn.addEventListener('click', closeOrder);
+if (cancelOrderBtn) cancelOrderBtn.addEventListener('click', closeOrder);
+
+function closeOrder() {
+  orderModal.classList.add('hidden');
+  orderForm.reset();
+}
+
+if (orderForm) {
+  orderForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert("Order successful! Your details have been recorded.");
+    closeOrder();
+  });
 }
 
 // Initial Setup

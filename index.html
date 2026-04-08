@@ -110,39 +110,59 @@
       
       <!-- Category Pills Top Bar -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-        <div class="flex flex-wrap items-center justify-center gap-2 overflow-x-auto hide-scrollbar">
-          <a href="pages/food.html"
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-yellow-500 text-yellow-950 shadow-md shadow-yellow-500/30 hover:bg-yellow-400 transition">
-            🍔 Food
-          </a>
-          <button
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-500 text-white shadow-md shadow-rose-500/30 hover:bg-rose-400 transition">
-            🚗 Vehicles
-          </button>
-          <button
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500 text-emerald-950 shadow-md shadow-emerald-500/30 hover:bg-emerald-400 transition">
-            🛒 Grocery
-          </button>
-          <button
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-500 text-white shadow-md shadow-orange-500/30 hover:bg-orange-400 transition">
-            🥦 Fruits
-          </button>
-          <button
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500 text-sky-950 shadow-md shadow-sky-500/30 hover:bg-sky-400 transition">
-            📱 Mobile
-          </button>
-          <button
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-500 text-white shadow-md shadow-indigo-500/30 hover:bg-indigo-400 transition">
-            🏠 Property
-          </button>
-          <button
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-fuchsia-500 text-white shadow-md shadow-fuchsia-500/30 hover:bg-fuchsia-400 transition">
-            🧴 Personal Care
-          </button>
-          <button
-            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-teal-500 text-teal-950 shadow-md shadow-teal-500/30 hover:bg-teal-400 transition">
-            🧸 Kids
-          </button>
+        <div class="relative w-full flex items-center justify-center">
+          <!-- Category Pills -->
+          <div class="flex items-center justify-center gap-2 overflow-x-auto hide-scrollbar pb-1 flex-wrap lg:flex-nowrap">
+            <a href="pages/food.html"
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-yellow-500 text-yellow-950 shadow-md shadow-yellow-500/30 hover:bg-yellow-400 transition">
+              🍔 Food
+            </a>
+            <button
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-500 text-white shadow-md shadow-rose-500/30 hover:bg-rose-400 transition">
+              🚗 Vehicles
+            </button>
+            <button
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500 text-emerald-950 shadow-md shadow-emerald-500/30 hover:bg-emerald-400 transition">
+              🛒 Grocery
+            </button>
+            <button
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-500 text-white shadow-md shadow-orange-500/30 hover:bg-orange-400 transition">
+              🥦 Fruits
+            </button>
+            <button
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500 text-sky-950 shadow-md shadow-sky-500/30 hover:bg-sky-400 transition">
+              📱 Mobile
+            </button>
+            <button
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-500 text-white shadow-md shadow-indigo-500/30 hover:bg-indigo-400 transition">
+              🏠 Property
+            </button>
+            <button
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-fuchsia-500 text-white shadow-md shadow-fuchsia-500/30 hover:bg-fuchsia-400 transition">
+              🧴 Personal Care
+            </button>
+            <button
+              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-teal-500 text-teal-950 shadow-md shadow-teal-500/30 hover:bg-teal-400 transition">
+              🧸 Kids
+            </button>
+          </div>
+
+          <!-- Visitor Counter -->
+          <div class="absolute left-0 shrink-0 hidden xl:block">
+            <div class="visitor-counter shadow-[0_0_15px_rgba(34,197,94,0.15)] flex">
+              <div class="visitor-moving-outline"></div>
+              <div class="visitor-counter-inner">
+                <span class="text-slate-300 text-[0.75rem] sm:text-xs font-medium tracking-wide">Total Visitors</span>
+                <span class="text-emerald-400 text-sm font-bold tracking-wider mr-1">5,067</span>
+                <span class="ml-1 flex items-center">
+                   <svg class="w-[1.1rem] h-[1.1rem] drop-shadow-md" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M2.5 12C2.5 12 6.5 5 12 5C17.5 5 21.5 12 21.5 12C21.5 12 17.5 19 12 19C6.5 19 2.5 12 2.5 12Z" fill="#e2e8f0"/>
+                     <circle cx="12" cy="12" r="3.5" fill="#92400e"/>
+                   </svg>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
