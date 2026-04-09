@@ -28,7 +28,12 @@
         currentCategory = btn.getAttribute('data-category');
         categoryLabel.textContent = btn.textContent.trim();
         categoryMenu.classList.add('hidden');
-        renderProducts();
+        
+        if (currentCategory === 'food') {
+          window.location.href = 'pages/food.html';
+        } else {
+          renderProducts();
+        }
       });
     }
 
@@ -63,6 +68,14 @@
     function renderProducts() {
       if (!productRowsEl) return;
       const q = searchInput.value.trim().toLowerCase();
+      
+      // Redirect to food page if search query relates to food
+      const foodKeywords = ['burger', 'pizza', 'fast food', 'biryani', 'broast', 'haleem', 'zinger', 'bun kabab', 'sandwich', 'shawarma', 'meal', 'food', 'tikka', 'kabab', 'fries'];
+      if (q && foodKeywords.some(kw => q.includes(kw))) {
+        window.location.href = 'pages/food.html?search=' + encodeURIComponent(q);
+        return;
+      }
+
       let filtered = products.slice();
 
       if (currentCategory !== 'all') {

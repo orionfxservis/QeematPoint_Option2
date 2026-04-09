@@ -326,6 +326,13 @@ function selectFoodItem(id) {
   
   // Re-render list to show active state
   renderFoodList();
+
+  // On mobile, scroll to the details viewer when selected
+  if (window.innerWidth < 1024) {
+    setTimeout(() => {
+      document.getElementById('featuredAdContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
 }
 
 function openOrderModal() {
@@ -387,6 +394,12 @@ if (orderForm) {
 
 // Initial Setup
 if (foodListingsEl) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchParam = urlParams.get('search');
+  if (searchParam && foodSearchInput) {
+    foodSearchInput.value = searchParam;
+  }
+
   renderFoodList();
   
   // Select first item by default if data exists
