@@ -1,751 +1,2027 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
-
+<html lang="ur" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Qeemat Point - قِیمَت پوائنٹ | Smart Commodity Price Comparison Pakistan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qeemat Point - قیمت پوائنٹ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #00A651;
+  --green-dark: #007A3D;
+  --green-light: #E8F9F0;
+  --gold: #F5A623;
+  --gold-dark: #D4881A;
+  --red: #E63946;
+  --white: #ffffff;
+  --bg: #F4F7F5;
+  --dark: #0D1F15;
+  --text: #1A2E22;
+  --muted: #5A7062;
+  --card-bg: #ffffff;
+  --border: #D6E8DC;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-hover: 0 12px 40px rgba(0,166,81,0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+
+/* ─── NAVBAR ─── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(13,31,21,0.97);
+  backdrop-filter: blur(12px);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+  border-bottom: 2px solid var(--green);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--green), var(--gold));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 14px rgba(0,166,81,0.4);
+}
+
+.nav-logo-text { display: flex; flex-direction: column; }
+.nav-logo-en { font-size: 20px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+.nav-logo-ur { font-family: 'Noto Nastaliq Urdu', serif; font-size: 13px; color: var(--gold); direction: rtl; }
+
+.nav-links {
+  display: flex; gap: 8px; list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.25s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  background: var(--green);
+  color: var(--white);
+}
+
+.nav-right { display: flex; gap: 10px; align-items: center; }
+
+.btn-login {
+  padding: 8px 20px;
+  background: transparent;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.btn-login:hover { background: var(--green); color: var(--white); }
+
+.btn-post {
+  padding: 8px 20px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border: none;
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 4px 14px rgba(245,166,35,0.35);
+}
+
+.btn-post:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(245,166,35,0.5); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(160deg, #0D1F15 0%, #1A3A25 40%, #0A2A18 100%);
+  padding-top: 70px;
+}
+
+/* Background image strip */
+.hero-bg-strip {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 45%;
+  overflow: hidden;
+  opacity: 0.18;
+}
+
+.hero-images-row {
+  display: flex;
+  animation: scrollImages 30s linear infinite;
+  height: 100%;
+}
+
+.hero-images-row img {
+  height: 100%; width: auto; min-width: 200px;
+  object-fit: cover; flex-shrink: 0;
+  filter: saturate(0.7) brightness(0.8);
+}
+
+@keyframes scrollImages {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Floating product icons */
+.floating-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.float-icon {
+  position: absolute;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  animation: floatAnim 4s ease-in-out infinite;
+}
+
+.float-icon:nth-child(1) { top: 18%; left: 6%; animation-delay: 0s; }
+.float-icon:nth-child(2) { top: 28%; left: 16%; animation-delay: 0.6s; }
+.float-icon:nth-child(3) { top: 55%; left: 5%; animation-delay: 1.2s; }
+.float-icon:nth-child(4) { top: 70%; left: 18%; animation-delay: 0.3s; }
+.float-icon:nth-child(5) { top: 15%; right: 7%; animation-delay: 0.9s; }
+.float-icon:nth-child(6) { top: 30%; right: 17%; animation-delay: 1.5s; }
+.float-icon:nth-child(7) { top: 58%; right: 6%; animation-delay: 0.5s; }
+.float-icon:nth-child(8) { top: 72%; right: 20%; animation-delay: 1.1s; }
+.float-icon:nth-child(9) { top: 42%; left: 3%; animation-delay: 1.8s; }
+.float-icon:nth-child(10) { top: 44%; right: 4%; animation-delay: 0.7s; }
+
+.float-icon-bubble {
+  width: 64px; height: 64px;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(0,166,81,0.3);
+  border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+
+.float-icon-label {
+  font-size: 9px; font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+
+/* Decorative lines */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 50% 40%, rgba(0,166,81,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 300px 200px at 20% 80%, rgba(245,166,35,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative; z-index: 10;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 780px;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(245,166,35,0.15);
+  border: 1px solid rgba(245,166,35,0.4);
+  color: var(--gold);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.hero-title-ur {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: clamp(38px, 6vw, 68px);
+  color: var(--white);
+  line-height: 1.4;
+  direction: rtl;
+  margin-bottom: 8px;
+  text-shadow: 0 4px 30px rgba(0,166,81,0.3);
+}
+
+.hero-title-ur span {
+  background: linear-gradient(135deg, var(--green), #00D46A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline-ur {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: rgba(255,255,255,0.6);
+  direction: rtl;
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+.hero-tagline-ur strong {
+  color: var(--gold);
+}
+
+/* ─── HERO SEARCH ─── */
+.hero-search-box {
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(0,166,81,0.25);
+  border-radius: 20px;
+  padding: 20px 24px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.search-row {
+  display: flex; gap: 12px; align-items: stretch;
+}
+
+.search-cat-select {
+  flex: 0 0 180px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(0,166,81,0.3);
+  border-radius: 12px;
+  color: var(--white);
+  font-family: 'Poppins'; font-size: 14px; font-weight: 500;
+  outline: none; cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300A651' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.search-cat-select option { background: #1A3A25; }
+
+.search-input-wrap { flex: 1; position: relative; }
+
+.search-input {
+  width: 100%;
+  padding: 14px 50px 14px 18px;
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(0,166,81,0.3);
+  border-radius: 12px;
+  color: var(--white);
+  font-family: 'Poppins'; font-size: 15px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.search-input::placeholder { color: rgba(255,255,255,0.4); }
+.search-input:focus { border-color: var(--green); background: rgba(255,255,255,0.14); box-shadow: 0 0 0 3px rgba(0,166,81,0.2); }
+
+.search-loc-btn {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; font-size: 18px; color: var(--gold);
+}
+
+.search-submit-btn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  border: none; border-radius: 12px;
+  color: var(--white); font-size: 15px; font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  transition: all 0.3s;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0,166,81,0.4);
+}
+
+.search-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,166,81,0.55); }
+
+.search-tags {
+  display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;
+}
+
+.stag {
+  padding: 5px 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px;
+  font-size: 12px; color: rgba(255,255,255,0.6);
+  cursor: pointer; transition: all 0.2s;
+}
+
+.stag:hover { background: rgba(0,166,81,0.2); border-color: var(--green); color: var(--white); }
+
+.hero-stats {
+  display: flex; gap: 36px; justify-content: center;
+  color: rgba(255,255,255,0.5); font-size: 13px;
+}
+
+.hero-stat strong { display: block; font-size: 26px; font-weight: 800; color: var(--white); }
+.hero-stat span { color: var(--green); font-weight: 600; }
+
+/* ─── SECTION COMMON ─── */
+section { padding: 80px 0; }
+.section-inner { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+
+.section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.section-title-block {}
+.section-label {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  color: var(--green); text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-size: 32px; font-weight: 800;
+  color: var(--dark); line-height: 1.2;
+}
+
+.section-title-ur {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 22px; color: var(--muted);
+  direction: rtl; display: block;
+  margin-top: 4px;
+}
+
+.view-all-btn {
+  padding: 10px 24px;
+  background: transparent;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  border-radius: 10px;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none; display: inline-block;
+}
+
+.view-all-btn:hover { background: var(--green); color: var(--white); }
+
+/* ─── HORIZONTAL BANNER AD ─── */
+.banner-ad-wrap {
+  width: 100%;
+  background: var(--dark);
+  padding: 16px 0;
+  border-top: 3px solid var(--green);
+  border-bottom: 3px solid var(--green);
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-ad-inner {
+  max-width: 1300px; margin: 0 auto; padding: 0 40px;
+}
+
+.banner-ad-placeholder {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(135deg, #0D2B1A 0%, #183D26 50%, #0D2B1A 100%);
+  border-radius: 14px;
+  border: 2px dashed rgba(0,166,81,0.35);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-ad-content {
+  display: flex;
+  animation: bannerScroll 20s linear infinite;
+  align-items: center;
+  gap: 60px;
+  white-space: nowrap;
+  padding: 0 40px;
+}
+
+.banner-ad-item {
+  display: flex; align-items: center; gap: 16px;
+  flex-shrink: 0;
+}
+
+.banner-ad-icon { font-size: 32px; }
+
+.banner-ad-text { }
+.banner-ad-title { font-size: 16px; font-weight: 700; color: var(--gold); }
+.banner-ad-sub { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+.banner-ad-price {
+  padding: 6px 16px;
+  background: var(--green);
+  border-radius: 8px;
+  color: var(--white); font-size: 14px; font-weight: 700;
+}
+
+.banner-ad-divider { color: rgba(0,166,81,0.4); font-size: 24px; }
+
+@keyframes bannerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.banner-ad-label {
+  position: absolute; top: 6px; right: 10px;
+  font-size: 9px; color: rgba(255,255,255,0.25);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+/* ─── IMAGE STRIP (continuous) ─── */
+.image-strip-section {
+  background: var(--dark);
+  padding: 20px 0;
+  overflow: hidden;
+  border-top: 2px solid rgba(0,166,81,0.2);
+  border-bottom: 2px solid rgba(0,166,81,0.2);
+}
+
+.strip-row {
+  display: flex; gap: 16px;
+  margin-bottom: 10px;
+}
+
+.strip-row:last-child { margin-bottom: 0; }
+
+.strip-row.row1 { animation: stripLeft 35s linear infinite; }
+.strip-row.row2 { animation: stripRight 28s linear infinite; }
+
+@keyframes stripLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes stripRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.strip-card {
+  flex-shrink: 0;
+  width: 200px; height: 130px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.strip-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.strip-card-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  color: white; font-size: 11px; font-weight: 600;
+  padding: 16px 10px 8px;
+  letter-spacing: 0.5px;
+}
+
+/* ─── CATEGORIES ─── */
+.categories-section { background: var(--white); }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.cat-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none; color: inherit;
+  position: relative; overflow: hidden;
+}
+
+.cat-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--green-light), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+
+.cat-card:hover {
+  border-color: var(--green);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.cat-card:hover::before { opacity: 1; }
+
+.cat-icon {
+  font-size: 36px; margin-bottom: 10px;
+  display: block; position: relative; z-index: 1;
+}
+
+.cat-name { font-size: 13px; font-weight: 700; color: var(--dark); position: relative; z-index: 1; }
+.cat-name-ur {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 11px; color: var(--muted); direction: rtl;
+  display: block; margin-top: 3px; position: relative; z-index: 1;
+}
+.cat-count { font-size: 11px; color: var(--green); font-weight: 600; margin-top: 6px; position: relative; z-index: 1; }
+
+/* ─── MAIN LAYOUT WITH SIDE AD ─── */
+.main-with-sidebar {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  gap: 30px;
+  max-width: 1300px; margin: 0 auto; padding: 0 40px;
+}
+
+/* ─── VERTICAL AD ─── */
+.side-ad-panel {
+  width: 160px;
+  position: sticky; top: 90px;
+  height: fit-content;
+}
+
+.side-ad-label {
+  font-size: 9px; color: var(--muted); letter-spacing: 1.5px;
+  text-transform: uppercase; text-align: center; margin-bottom: 6px;
+}
+
+.side-ad-placeholder {
+  width: 120px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #0D1F15, #183D26);
+  border-radius: 14px;
+  border: 2px dashed rgba(0,166,81,0.35);
+  overflow: hidden;
+  position: relative;
+  height: 600px;
+}
+
+.side-ad-scroll {
+  animation: sideScroll 15s linear infinite;
+  display: flex; flex-direction: column; gap: 0;
+}
+
+@keyframes sideScroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.side-ad-item {
+  padding: 14px 10px;
+  border-bottom: 1px solid rgba(0,166,81,0.15);
+  text-align: center;
+}
+
+.side-ad-item-icon { font-size: 28px; margin-bottom: 6px; display: block; }
+.side-ad-item-name { font-size: 9px; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 4px; }
+.side-ad-item-price {
+  font-size: 10px; font-weight: 800;
+  background: var(--green); color: white;
+  padding: 2px 8px; border-radius: 4px; display: inline-block;
+}
+.side-ad-item-disc {
+  font-size: 9px; color: var(--gold);
+  margin-top: 3px; display: block;
+}
+
+.side-ad-panel-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,166,81,0.12);
+  text-align: center; padding: 6px;
+  font-size: 8px; color: rgba(255,255,255,0.3);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+/* ─── SEARCH RESULTS ─── */
+#search-results-section {
+  display: none;
+  background: var(--bg);
+  padding: 60px 0;
+}
+
+.results-header {
+  margin-bottom: 24px;
+}
+
+.results-title { font-size: 22px; font-weight: 700; color: var(--dark); }
+.results-subtitle { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+.results-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; padding: 14px 20px;
+  background: var(--white); border-radius: 12px;
+  border: 1.5px solid var(--border);
+}
+
+.results-count { font-size: 14px; color: var(--muted); }
+.results-count strong { color: var(--dark); }
+
+.sort-info {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--muted);
+}
+
+.sort-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--green-light);
+  border: 1px solid rgba(0,166,81,0.3);
+  color: var(--green); padding: 4px 12px; border-radius: 6px;
+  font-size: 12px; font-weight: 600;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ─── PRODUCT CARD ─── */
+.product-card {
+  background: var(--white);
+  border-radius: 18px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.product-card:hover {
+  border-color: var(--green);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-img-wrap {
+  height: 190px; background: #F8FBF9;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.04));
+}
+
+.product-badge-wrap {
+  position: absolute; top: 12px; left: 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-sale { background: var(--red); color: white; }
+.badge-new { background: var(--gold); color: white; }
+.badge-top { background: var(--green); color: white; }
+.badge-near { background: var(--dark); color: white; }
+
+.product-fav {
+  position: absolute; top: 12px; right: 12px;
+  width: 32px; height: 32px;
+  background: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  border: none;
+  transition: all 0.2s;
+}
+
+.product-fav:hover { transform: scale(1.15); }
+
+.product-info { padding: 16px; }
+
+.product-store {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--muted); font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.store-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+.product-name {
+  font-size: 14px; font-weight: 700; color: var(--dark);
+  margin-bottom: 8px; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.product-location {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--muted); margin-bottom: 10px;
+}
+
+.product-price-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.product-price {
+  font-size: 20px; font-weight: 800; color: var(--green);
+}
+
+.product-price-old {
+  font-size: 13px; color: var(--muted);
+  text-decoration: line-through; margin-top: 2px;
+}
+
+.product-discount {
+  background: rgba(230,57,70,0.1);
+  color: var(--red); font-size: 12px; font-weight: 700;
+  padding: 3px 8px; border-radius: 6px;
+}
+
+.product-compare-btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  border: none; border-radius: 10px;
+  color: white; font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: all 0.25s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+.product-compare-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ─── FEATURED PRODUCTS ─── */
+.featured-section { background: var(--white); }
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+/* ─── DEALS TICKER ─── */
+.deals-ticker {
+  background: linear-gradient(135deg, var(--green-dark), #005C2E);
+  padding: 14px 0;
+  overflow: hidden;
+}
+
+.ticker-inner { display: flex; align-items: center; }
+
+.ticker-label {
+  flex-shrink: 0;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 12px; font-weight: 800;
+  padding: 8px 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+  padding-right: 28px;
+}
+
+.ticker-scroll {
+  display: flex; gap: 50px; align-items: center;
+  animation: tickerScroll 20s linear infinite;
+  padding-left: 40px;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  display: flex; align-items: center; gap: 10px;
+  white-space: nowrap; color: white; font-size: 13px;
+}
+
+.ticker-item-name { font-weight: 600; }
+.ticker-item-price { color: var(--gold); font-weight: 800; }
+.ticker-sep { color: rgba(255,255,255,0.3); }
+
+/* ─── BLOG ─── */
+.blog-section { background: var(--bg); }
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 24px;
+}
+
+.blog-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none; color: inherit;
+}
+
+.blog-card:hover {
+  border-color: var(--green);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.blog-img {
+  height: 200px;
+  background: linear-gradient(135deg, #E8F9F0, #D0F0E2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 60px;
+  overflow: hidden; position: relative;
+}
+
+.blog-card.featured .blog-img { height: 280px; }
+
+.blog-content { padding: 20px; }
+
+.blog-meta {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+
+.blog-cat {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--green);
+  background: var(--green-light); padding: 3px 10px; border-radius: 4px;
+}
+
+.blog-date { font-size: 11px; color: var(--muted); }
+
+.blog-title {
+  font-size: 16px; font-weight: 700; color: var(--dark);
+  line-height: 1.4; margin-bottom: 8px;
+}
+
+.blog-card.featured .blog-title { font-size: 20px; }
+
+.blog-excerpt {
+  font-size: 13px; color: var(--muted); line-height: 1.6;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.blog-read-more {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 14px;
+  font-size: 13px; font-weight: 600; color: var(--green);
+}
+
+/* ─── ABOUT ─── */
+.about-section {
+  background: linear-gradient(160deg, #0D1F15, #1A3A25);
+  color: white;
+  position: relative; overflow: hidden;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 800px 600px at 80% 50%, rgba(0,166,81,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative; z-index: 1;
+}
+
+.about-label { color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+
+.about-title {
+  font-size: 38px; font-weight: 800;
+  line-height: 1.2; margin-bottom: 8px;
+}
+
+.about-title-ur {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 24px; color: var(--gold);
+  direction: rtl; display: block;
+  margin-bottom: 24px;
+}
+
+.about-text {
+  font-size: 15px; color: rgba(255,255,255,0.7);
+  line-height: 1.8; margin-bottom: 20px;
+}
+
+.about-features { list-style: none; margin-bottom: 32px; }
+
+.about-features li {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: rgba(255,255,255,0.8);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.about-features li:last-child { border-bottom: none; }
+
+.about-feat-icon {
+  width: 34px; height: 34px;
+  background: rgba(0,166,81,0.15);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+
+.about-stats-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.about-stat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(0,166,81,0.2);
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s;
+}
+
+.about-stat-card:hover {
+  background: rgba(0,166,81,0.1);
+  border-color: var(--green);
+  transform: translateY(-4px);
+}
+
+.about-stat-num {
+  font-size: 38px; font-weight: 900;
+  background: linear-gradient(135deg, var(--green), #00D46A);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.about-stat-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+/* ─── CONTACT ─── */
+.contact-section { background: var(--white); }
+
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 60px; align-items: start;
+}
+
+.contact-info {}
+
+.contact-info-item {
+  display: flex; gap: 16px; margin-bottom: 28px;
+}
+
+.contact-icon-wrap {
+  width: 50px; height: 50px;
+  background: var(--green-light);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+
+.contact-info-text { }
+.contact-info-label { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+.contact-info-value { font-size: 15px; font-weight: 700; color: var(--dark); margin-top: 3px; }
+
+.contact-social { display: flex; gap: 10px; margin-top: 28px; }
+
+.social-btn {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; cursor: pointer;
+  transition: all 0.25s; text-decoration: none;
+  border: none;
+}
+
+.s-fb { background: #1877F2; color: white; }
+.s-wa { background: #25D366; color: white; }
+.s-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+.s-yt { background: #FF0000; color: white; }
+
+.social-btn:hover { transform: translateY(-3px) scale(1.08); }
+
+.contact-form {
+  background: var(--bg);
+  border-radius: 20px;
+  padding: 36px;
+  border: 1.5px solid var(--border);
+}
+
+.form-title {
+  font-size: 22px; font-weight: 800; color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.form-title-ur {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 15px; color: var(--muted);
+  direction: rtl; display: block; margin-bottom: 24px;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+
+.form-group { margin-bottom: 14px; }
+
+.form-group label {
+  display: block;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+  color: var(--muted); text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Poppins'; font-size: 14px;
+  color: var(--dark);
+  outline: none;
+  transition: all 0.25s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(0,166,81,0.1);
+}
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-submit {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  border: none; border-radius: 12px;
+  color: white; font-size: 16px; font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 6px 20px rgba(0,166,81,0.3);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,166,81,0.45); }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.7);
+  padding: 60px 0 0;
+}
+
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px; padding-bottom: 50px;
+  max-width: 1300px; margin: 0 auto; padding: 0 40px 50px;
+}
+
+.footer-brand { }
+
+.footer-logo {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--green), var(--gold));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+
+.footer-logo-text .name-en { font-size: 20px; font-weight: 800; color: white; }
+.footer-logo-text .name-ur { font-family: 'Noto Nastaliq Urdu', serif; font-size: 13px; color: var(--gold); direction: rtl; }
+
+.footer-desc {
+  font-size: 13px; line-height: 1.8; margin-bottom: 20px;
+}
+
+.footer-col-title {
+  font-size: 14px; font-weight: 700; color: white;
+  margin-bottom: 6px;
+}
+
+.footer-col-title-ur {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 12px; color: var(--gold); direction: rtl;
+  display: block; margin-bottom: 16px;
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  text-decoration: none; color: rgba(255,255,255,0.6);
+  font-size: 13px; transition: color 0.2s;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.footer-links a:hover { color: var(--green); }
+
+.footer-bottom {
+  background: rgba(0,0,0,0.3);
+  padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 100%;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-bottom-text { font-size: 12px; color: rgba(255,255,255,0.4); }
+.footer-bottom-right { display: flex; align-items: center; gap: 10px; }
+.footer-bottom-right span { font-size: 10px; color: rgba(255,255,255,0.25); }
+
+/* ─── TOP BAR ─── */
+.top-bar {
+  background: var(--green-dark);
+  padding: 8px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.top-bar-text {
+  font-size: 12px; color: rgba(255,255,255,0.9);
+  display: flex; align-items: center; gap: 6px;
+}
+
+.top-bar-right {
+  display: flex; align-items: center; gap: 16px;
+}
+
+.top-bar-right a {
+  font-size: 12px; color: rgba(255,255,255,0.8);
+  text-decoration: none; transition: color 0.2s;
+}
+
+.top-bar-right a:hover { color: var(--gold); }
+
+/* ─── TOOLTIP PULSE ─── */
+.pulse-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%; background: var(--gold);
+  display: inline-block; position: relative;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute; inset: -3px;
+  border-radius: 50%; border: 2px solid var(--gold);
+  animation: pulseDot 1.5s ease-out infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* ─── NEARBY TAG ─── */
+.nearby-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(0,166,81,0.1); border: 1px solid rgba(0,166,81,0.25);
+  color: var(--green); font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 6px; margin-top: 4px;
+}
+
+/* ─── COMPARE FLOATING BAR ─── */
+.compare-bar {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--dark);
+  border: 1.5px solid var(--green);
+  border-radius: 16px; padding: 14px 28px;
+  display: none; align-items: center; gap: 20px;
+  z-index: 500;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateX(-50%) translateY(30px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.compare-bar.visible { display: flex; }
+
+.compare-bar-text { color: white; font-size: 14px; }
+.compare-bar-text strong { color: var(--gold); }
+
+.compare-bar-btn {
+  padding: 10px 22px;
+  background: var(--green);
+  border: none; border-radius: 10px;
+  color: white; font-size: 13px; font-weight: 700;
+  cursor: pointer;
+}
+
+.compare-bar-clear {
+  background: none; border: none;
+  color: rgba(255,255,255,0.5); font-size: 20px;
+  cursor: pointer;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  .cat-grid { grid-template-columns: repeat(4, 1fr); }
+  .featured-grid { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .main-with-sidebar { grid-template-columns: 1fr; }
+  .side-ad-panel { display: none; }
+}
+
+@media (max-width: 768px) {
+  .navbar { padding: 0 16px; }
+  .nav-links { display: none; }
+  .section-inner, .main-with-sidebar { padding: 0 16px; }
+  .hero-search-box .search-row { flex-direction: column; }
+  .search-cat-select { flex: none; width: 100%; }
+  .cat-grid { grid-template-columns: repeat(3, 1fr); }
+  .featured-grid { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; padding: 0 16px 40px; }
+  .top-bar { padding: 8px 16px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ─── SECTION TRANSITIONS ─── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
 </head>
+<body>
 
-<body class="text-slate-100">
-  <!-- Floating Balloon Layer -->
-  <div class="balloon-layer" aria-hidden="true"></div>
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-text">
+    <span class="pulse-dot"></span>
+    🇵🇰 Pakistan ka Number 1 Price Comparison Platform — <strong style="color:var(--gold)">5 Lakh+ Products Listed</strong>
+  </div>
+  <div class="top-bar-right">
+    <a href="#">Download App</a>
+    <a href="#">Seller Register</a>
+    <a href="#">Help</a>
+  </div>
+</div>
 
-  <!-- Hero Background Category Strip -->
-  <div class="category-strip" aria-hidden="true">
-    <div class="category-row" style="top:10%;">
-      <div class="cat-chip"><span>🥦</span><span>Sabzi / Vegetables</span></div>
-      <div class="cat-chip"><span>🥩</span><span>Gosht / Meat</span></div>
-      <div class="cat-chip"><span>🍚</span><span>Chawal / Rice</span></div>
-      <div class="cat-chip"><span>🍳</span><span>Anday / Eggs</span></div>
-      <div class="cat-chip"><span>🛢️</span><span>Cooking Oil</span></div>
-      <div class="cat-chip"><span>🧴</span><span>Personal Care</span></div>
-      <div class="cat-chip"><span>🧼</span><span>Detergent</span></div>
-      <div class="cat-chip"><span>🍼</span><span>Baby Items</span></div>
-      <div class="cat-chip"><span>🍪</span><span>Snacks &amp; Biscuits</span></div>
-      <div class="cat-chip"><span>💊</span><span>Medicine (OTC)</span></div>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🏷️</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-en">Qeemat Point</span>
+      <span class="nav-logo-ur">قیمت پوائنٹ</span>
     </div>
-    <div class="category-row">
-      <div class="cat-chip"><span>📱</span><span>Mobile Phones</span></div>
-      <div class="cat-chip"><span>👟</span><span>Shoes</span></div>
-      <div class="cat-chip"><span>👕</span><span>Clothing</span></div>
-      <div class="cat-chip"><span>🏠</span><span>Home Essentials</span></div>
-      <div class="cat-chip"><span>💻</span><span>Electronics</span></div>
-      <div class="cat-chip"><span>🧂</span><span>Masalay / Spices</span></div>
-      <div class="cat-chip"><span>🍞</span><span>Bread &amp; Bakery</span></div>
-      <div class="cat-chip"><span>🧃</span><span>Juices &amp; Drinks</span></div>
-      <div class="cat-chip"><span>🥛</span><span>Milk &amp; Dairy</span></div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="btn-login">Login / Sign Up</button>
+    <button class="btn-post">+ List Product</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <!-- Floating Product Icons -->
+  <div class="floating-icons">
+    <div class="float-icon">
+      <div class="float-icon-bubble">📱</div>
+      <span class="float-icon-label">MOBILE</span>
     </div>
-    <div class="category-row">
-      <div class="cat-chip"><span>🛒</span><span>Monthly Grocery</span></div>
-      <div class="cat-chip"><span>💡</span><span>Utility Items</span></div>
-      <div class="cat-chip"><span>🧺</span><span>Household Cleaning</span></div>
-      <div class="cat-chip"><span>📚</span><span>Stationery</span></div>
-      <div class="cat-chip"><span>🎮</span><span>Gaming</span></div>
-      <div class="cat-chip"><span>🧥</span><span>Winter Wear</span></div>
-      <div class="cat-chip"><span>☕</span><span>Tea &amp; Coffee</span></div>
-      <div class="cat-chip"><span>🍫</span><span>Chocolate</span></div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">💻</div>
+      <span class="float-icon-label">LAPTOP</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">👗</div>
+      <span class="float-icon-label">FASHION</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">🏠</div>
+      <span class="float-icon-label">HOME</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">🚗</div>
+      <span class="float-icon-label">AUTO</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">🍳</div>
+      <span class="float-icon-label">KITCHEN</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">💊</div>
+      <span class="float-icon-label">HEALTH</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">📚</div>
+      <span class="float-icon-label">BOOKS</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">🎮</div>
+      <span class="float-icon-label">GAMING</span>
+    </div>
+    <div class="float-icon">
+      <div class="float-icon-bubble">⚽</div>
+      <span class="float-icon-label">SPORTS</span>
     </div>
   </div>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div
-          class="w-9 h-9 rounded-2xl bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center shadow-lg shadow-emerald-500/40">
-          <span class="text-xl font-black text-slate-950">Q</span>
+  <!-- Hero Content -->
+  <div class="hero-content">
+    <div class="hero-badge">🇵🇰 Pakistan's Smartest Price Finder</div>
+
+    <h1 class="hero-title-ur">
+      <span>سب سے سستی قیمت</span><br>
+      ایک جگہ پر!
+    </h1>
+
+    <p class="hero-tagline-ur">
+      گھر بیٹھے <strong>لاکھوں مصنوعات</strong> کا موازنہ کریں اور<br>
+      <strong>قریب ترین دکان</strong> سے بہترین قیمت حاصل کریں
+    </p>
+
+    <!-- Search Box -->
+    <div class="hero-search-box">
+      <div class="search-row">
+        <select class="search-cat-select" id="catSelect">
+          <option value="">All Categories</option>
+          <option value="mobiles">📱 Mobiles & Tablets</option>
+          <option value="laptops">💻 Laptops & Computers</option>
+          <option value="appliances">🏠 Home Appliances</option>
+          <option value="fashion">👗 Fashion & Clothing</option>
+          <option value="food">🍽️ Food & Grocery</option>
+          <option value="auto">🚗 Automotive</option>
+          <option value="health">💊 Health & Beauty</option>
+          <option value="sports">⚽ Sports & Fitness</option>
+          <option value="books">📚 Books & Stationery</option>
+          <option value="gaming">🎮 Gaming</option>
+        </select>
+
+        <div class="search-input-wrap">
+          <input type="text" class="search-input" id="searchInput" placeholder="Search product, brand, or item... e.g. Samsung A55, Dawlance Fridge">
+          <button class="search-loc-btn" title="Use my location">📍</button>
         </div>
-        <div class="leading-tight">
-          <div class="flex items-end gap-1">
-            <span class="text-lg sm:text-xl font-bold gradient-text">Qeemat Point</span>
-            <span class="text-xs text-slate-400 hidden sm:inline">قِیمَت پوائنٹ</span>
-          </div>
-          <p class="text-xs text-slate-400 hidden sm:block">Smart Price Comparison for Pakistan</p>
-        </div>
-      </div>
-      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-        <a href="#home" class="nav-link text-emerald-300 hover:text-emerald-400 transition">ہوم / Home</a>
-        <a href="#categories" class="nav-link hover:text-sky-300 text-slate-200 transition">کیٹگریز / Categories</a>
-        <a href="#deals" class="nav-link hover:text-sky-300 text-slate-200 transition">بہترین قیمتیں / Best Prices</a>
-        <a href="#blog" class="nav-link hover:text-sky-300 text-slate-200 transition">بلاگ / Blog</a>
-        <a href="#about" class="nav-link hover:text-sky-300 text-slate-200 transition">ہمارے بارے میں / About</a>
-        <a href="#contact" class="nav-link hover:text-sky-300 text-slate-200 transition">رابطہ / Contact</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <button
-          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/40 hover:bg-emerald-400 transition">
-          🇵🇰 Live Prices
-        </button>
-        <button id="mobileMenuBtn"
-          class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-700 bg-slate-900/70 text-slate-100">
-          <span class="sr-only">Menu</span>
-          ☰
+
+        <button class="search-submit-btn" onclick="doSearch()">
+          🔍 Compare Prices
         </button>
       </div>
-    </nav>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl">
-      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-2 text-sm">
-        <a href="#home" class="nav-link w-fit py-1 text-emerald-300">ہوم / Home</a>
-        <a href="#categories" class="nav-link w-fit py-1 text-slate-200">کیٹگریز / Categories</a>
-        <a href="#deals" class="nav-link w-fit py-1 text-slate-200">بہترین قیمتیں / Best Prices</a>
-        <a href="#blog" class="nav-link w-fit py-1 text-slate-200">بلاگ / Blog</a>
-        <a href="#about" class="nav-link w-fit py-1 text-slate-200">ہمارے بارے میں / About</a>
-        <a href="#contact" class="nav-link w-fit py-1 text-slate-200">رابطہ / Contact</a>
+
+      <div class="search-tags">
+        <span>🔥 Trending:</span>
+        <span class="stag" onclick="quickSearch('Samsung Galaxy')">Samsung Galaxy</span>
+        <span class="stag" onclick="quickSearch('Dawlance Fridge')">Dawlance Fridge</span>
+        <span class="stag" onclick="quickSearch('Honda CD 70')">Honda CD 70</span>
+        <span class="stag" onclick="quickSearch('Surf Excel')">Surf Excel</span>
+        <span class="stag" onclick="quickSearch('Dell Laptop')">Dell Laptop</span>
+        <span class="stag" onclick="quickSearch('Nike Shoes')">Nike Shoes</span>
       </div>
     </div>
-  </header>
 
-  <main class="relative z-10">
-    <!-- HERO SECTION -->
-    <section id="home" class="pt-4 pb-16 sm:pb-20">
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>5 Lakh+</strong> <span>Products</span></div>
+      <div class="hero-stat"><strong>12,000+</strong> <span>Sellers</span></div>
+      <div class="hero-stat"><strong>340+</strong> <span>Cities</span></div>
+      <div class="hero-stat"><strong>98%</strong> <span>Satisfied Users</span></div>
+    </div>
+  </div>
 
-      <!-- Category Pills Top Bar -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-        <div class="relative w-full flex flex-col-reverse lg:flex-row items-center lg:justify-center">
-          <!-- Category Pills -->
-          <div
-            class="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto hide-scrollbar pb-1 w-full max-w-full">
-            <a href="pages/food.html"
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-yellow-500 text-yellow-950 shadow-md shadow-yellow-500/30 hover:bg-yellow-400 transition">
-              🍔 Food
-            </a>
-            <button
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-500 text-white shadow-md shadow-rose-500/30 hover:bg-rose-400 transition">
-              🚗 Vehicles
-            </button>
-            <button
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500 text-emerald-950 shadow-md shadow-emerald-500/30 hover:bg-emerald-400 transition">
-              🛒 Grocery
-            </button>
-            <button
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-500 text-white shadow-md shadow-orange-500/30 hover:bg-orange-400 transition">
-              🥦 Fruits
-            </button>
-            <button
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500 text-sky-950 shadow-md shadow-sky-500/30 hover:bg-sky-400 transition">
-              📱 Mobile
-            </button>
-            <button
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-500 text-white shadow-md shadow-indigo-500/30 hover:bg-indigo-400 transition">
-              🏠 Property
-            </button>
-            <button
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-fuchsia-500 text-white shadow-md shadow-fuchsia-500/30 hover:bg-fuchsia-400 transition">
-              🧴 Personal Care
-            </button>
-            <button
-              class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-teal-500 text-teal-950 shadow-md shadow-teal-500/30 hover:bg-teal-400 transition">
-              🧸 Kids
-            </button>
-          </div>
+  <!-- BG Image Strip -->
+  <div class="hero-bg-strip">
+    <div class="hero-images-row" id="heroImgRow"></div>
+  </div>
+</section>
 
-          <!-- Location Button (Absolute Right on Desktop) -->
-          <div class="w-full lg:w-auto flex justify-start lg:block lg:absolute lg:right-0 shrink-0 z-10 mb-3 lg:mb-0">
-            <button id="headerLocationBtn"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800 border border-slate-700 text-slate-300 shadow-md transition">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-              </span>
-              Locating...
-            </button>
-          </div>
+<!-- DEALS TICKER -->
+<div class="deals-ticker">
+  <div class="ticker-inner">
+    <div class="ticker-label">🔥 HOT DEALS</div>
+    <div class="ticker-scroll" id="tickerScroll"></div>
+  </div>
+</div>
 
-          <!-- Visitor Counter -->
-          <div class="absolute left-0 shrink-0 hidden xl:block">
-            <div class="visitor-counter shadow-[0_0_15px_rgba(34,197,94,0.15)] flex">
-              <div class="visitor-moving-outline"></div>
-              <div class="visitor-counter-inner">
-                <span class="text-slate-300 text-[0.75rem] sm:text-xs font-medium tracking-wide">Total Visitors</span>
-                <span class="text-emerald-400 text-sm font-bold tracking-wider mr-1">5,067</span>
-                <span class="ml-1 flex items-center">
-                  <svg class="w-[1.1rem] h-[1.1rem] drop-shadow-md" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M2.5 12C2.5 12 6.5 5 12 5C17.5 5 21.5 12 21.5 12C21.5 12 17.5 19 12 19C6.5 19 2.5 12 2.5 12Z"
-                      fill="#e2e8f0" />
-                    <circle cx="12" cy="12" r="3.5" fill="#92400e" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </div>
+<!-- BANNER AD PLACEHOLDER -->
+<div class="banner-ad-wrap">
+  <div class="banner-ad-inner">
+    <div class="banner-ad-placeholder">
+      <div class="banner-ad-content" id="bannerContent"></div>
+      <span class="banner-ad-label">Advertisement • 740×120</span>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE STRIP -->
+<div class="image-strip-section">
+  <div class="strip-row row1" id="stripRow1"></div>
+  <div class="strip-row row2" id="stripRow2"></div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories-section" id="categories">
+  <div class="section-inner fade-in">
+    <div class="section-head">
+      <div class="section-title-block">
+        <span class="section-label">Browse</span>
+        <h2 class="section-title">Shop by Category</h2>
+        <span class="section-title-ur">تمام اقسام دیکھیں</span>
+      </div>
+      <a href="#" class="view-all-btn">View All →</a>
+    </div>
+
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- SEARCH RESULTS (hidden by default) -->
+<section id="search-results-section">
+  <div class="main-with-sidebar">
+    <div>
+      <div class="results-header">
+        <h2 class="results-title" id="resultsTitle">Results</h2>
+        <p class="results-subtitle" id="resultsSubtitle"></p>
+      </div>
+
+      <div class="results-toolbar">
+        <span class="results-count"><strong id="resultCount">0</strong> products found</span>
+        <div class="sort-info">
+          <span>Sorted by:</span>
+          <span class="sort-badge">📍 Nearby First &nbsp;·&nbsp; 💰 Price: Low to High</span>
         </div>
       </div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-10 hero-layout">
-        <!-- Left: Content -->
-        <div class="flex-1 flex flex-col justify-start">
-          <div
-            class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-300 text-[0.75rem] font-semibold mb-4 w-fit">
-            قیمتوں کا موازنہ، ہوش مندانہ خریداری — Price Smart, Save More
-          </div>
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
-            <span class="block gradient-text">
-              قیمت دیکھیں، پیسے بچائیں
-            </span>
-            <span class="block text-slate-100 mt-1">
-              Compare Commodity Prices Across Pakistan
-            </span>
-          </h1>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 max-w-xl">
-            ایک ہی چیز کی مختلف دکانوں، سپر اسٹورز اور آن لائن پلیٹ فارمز کی قیمت ایک جگہ دیکھیں۔
-            اپنی قریبی مارکیٹس سے لے کر بڑے برانڈز تک —
-            <span class="text-emerald-300 font-semibold">سستی، اصل اور قریب ترین</span> آپشن پہلے۔
-          </p>
+      <div class="results-grid" id="resultsGrid"></div>
+    </div>
 
-          <!-- Search Panel -->
-          <div class="glass-card p-4 sm:p-5 mb-6 relative">
-            <div class="flex flex-col sm:flex-row gap-3 sm:items-center mb-3">
-              <!-- Category dropdown -->
-              <div
-                class="relative category-pill px-3 py-1.5 flex items-center gap-2 text-xs sm:text-sm w-full sm:w-auto">
-                <span
-                  class="px-2 py-1 rounded-full bg-slate-900/60 text-emerald-300 border border-emerald-500/50 text-[0.7rem] sm:text-xs font-semibold">
-                  Category / کیٹگری
-                </span>
-                <button id="categoryToggle" class="flex-1 flex items-center justify-between gap-1 text-slate-100">
-                  <span id="categoryLabel" class="truncate">All Categories / تمام کیٹگریز</span>
-                  <span class="text-xs text-slate-400">▾</span>
-                </button>
-                <!-- Dropdown menu -->
-                <div id="categoryMenu"
-                  class="hidden absolute right-0 top-10 mt-1 w-56 category-menu rounded-2xl border border-slate-700 bg-slate-950 shadow-2xl shadow-slate-900/90 z-20">
-                  <button data-category="all"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    All Categories / تمام کیٹگریز
-                  </button>
-                  <button data-category="food"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Food / فوڈ
-                  </button>
-                  <button data-category="grocery"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Vehicles / فوڈ
-                  </button>
-                  <button data-category="grocery"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Grocery / گروسری
-                  </button>
-                  <button data-category="grocery"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Fruits / پھل
-                  </button>
-                  <button data-category="grocery"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Mobiles / موبائیل
-                  </button>
-                  <button data-category="vegetables"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Property / پراپرٹی
-                  </button>
-                  <button data-category="meat"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Personal Care / ذاتی نگہداشت
-                  </button>
-                  <button data-category="electronics"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Electronics / الیکٹرونکس
-                  </button>
-                  <button data-category="personal"
-                    class="w-full text-right px-3 py-2 text-xs text-slate-200 hover:bg-slate-800/80">
-                    Kids / کڈذ
-                  </button>
-                </div>
-              </div>
-              <!-- Search input -->
-              <div class="flex-1 flex items-stretch gap-2">
-                <div class="flex-1 relative">
-                  <input id="searchInput" type="text"
-                    placeholder="مثال: چینی، دودھ، موبائل فون...  |  e.g. Sugar, Milk, Mobile"
-                    class="w-full bg-slate-900/70 border border-slate-700 rounded-2xl text-xs sm:text-sm px-3 sm:px-4 py-2.5 pr-9 outline-none focus:ring-2 focus:ring-emerald-500/70 focus:border-emerald-400 text-slate-100 placeholder:text-slate-500" />
-                  <span class="absolute left-3 top-2.5 text-slate-500 text-sm">🔍</span>
-                </div>
-                <button id="searchBtn"
-                  class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-sky-500 text-slate-950 font-semibold text-xs sm:text-sm shadow-lg shadow-emerald-500/40 hover:from-emerald-400 hover:to-sky-400 whitespace-nowrap">
-                  Search / تلاش
-                </button>
-              </div>
-            </div>
-            <p class="text-[0.7rem] sm:text-xs text-slate-400 flex flex-wrap gap-2">
-              <span class="font-semibold text-emerald-300">Nearby First / قریبی مارکیٹس پہلے</span>
-              <span class="hidden sm:inline">•</span>
-              <span>Then by Price: Low to High / قیمت کم سے زیادہ</span>
-            </p>
-          </div>
-
-          <!-- Horizontal Banner -->
-          <div class="banner-horizontal">
-            720 × 120 | Horizontal Ad Space — مقامی دکانیں، سپر اسٹورز یا برانڈ بینرز
-          </div>
-        </div>
-
-        <!-- Right: Product List + Vertical Banner -->
-        <div class="flex-1 flex flex-col gap-4 relative">
-          <div class="flex-1 flex gap-4">
-            <!-- Product Card -->
-            <div class="flex-1 glass-card p-4 sm:p-5 relative overflow-hidden flex flex-col">
-              <div class="flex items-center justify-between mb-3">
-                <div>
-                  <h2 class="section-title text-sm sm:text-base md:text-lg">
-                    قریبی اور سستی قیمتیں
-                    <span class="text-slate-300 text-xs sm:text-sm block">Nearby &amp; Cheapest Options</span>
-                  </h2>
-                </div>
-                <span
-                  class="px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-[0.7rem] text-emerald-300">
-                  Today Rates / آج کے ریٹ
-                </span>
-              </div>
-
-              <div class="border border-slate-800 rounded-xl overflow-x-auto text-xs sm:text-sm flex-1">
-                <div class="min-w-[450px]">
-                  <div class="grid grid-cols-12 bg-slate-900/80 text-slate-300 font-semibold px-2 sm:px-3 py-2">
-                    <div class="col-span-5">Item / آئٹم</div>
-                    <div class="col-span-3 text-center">Area / علاقہ</div>
-                    <div class="col-span-2 text-center">Distance</div>
-                    <div class="col-span-2 text-right">Price (Rs)</div>
-                  </div>
-                  <div id="productRows" class="divide-y divide-slate-800/80 bg-slate-950/70 block w-full">
-                    <!-- JS will render rows -->
-                  </div>
-                </div>
-              </div>
-              <p class="mt-2 text-[0.7rem] text-slate-500">
-                * Demo data based on Karachi &amp; Lahore markets — actual app will use your live location
-                (GPS / Area selection) to show nearest prices first.
-              </p>
-            </div>
-
-            <!-- Vertical Banner -->
-            <aside class="hidden lg:block w-[120px] shrink-0">
-              <div class="banner-vertical-frame h-full">
-                <div class="banner-vertical-track">
-                  <div class="banner-item">
-                    120 × 720<br />Vertical Ad — Grocery Chains<br />Karachi / Lahore / Islamabad
-                  </div>
-                  <div class="banner-item">
-                    Mobile Brands • Electronics Retailers • Online Stores
-                  </div>
-                  <div class="banner-item">
-                    Bank Offers • Credit / Debit Card Discounts • Wallets
-                  </div>
-                  <div class="banner-item">
-                    Utility Stores • Wholesale Markets • Local Dukaan Ads
-                  </div>
-                  <!-- repeat for seamless scroll -->
-                  <div class="banner-item">
-                    120 × 720<br />Vertical Ad — Grocery Chains<br />Karachi / Lahore / Islamabad
-                  </div>
-                  <div class="banner-item">
-                    Mobile Brands • Electronics Retailers • Online Stores
-                  </div>
-                  <div class="banner-item">
-                    Bank Offers • Credit / Debit Card Discounts • Wallets
-                  </div>
-                  <div class="banner-item">
-                    Utility Stores • Wholesale Markets • Local Dukaan Ads
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
+    <!-- Vertical Side Ad -->
+    <div class="side-ad-panel">
+      <p class="side-ad-label">Advertisement</p>
+      <div class="side-ad-placeholder">
+        <div class="side-ad-scroll" id="sideAdScroll"></div>
+        <span class="side-ad-panel-label">120×740 AD</span>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- CATEGORIES GRID -->
-    <section id="categories" class="py-10 border-t border-slate-800/80 bg-slate-950/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <h2 class="section-title gradient-text">
-              کیٹگری منتخب کریں — Shop by Category
-            </h2>
-            <p class="text-slate-400 text-sm mt-1 max-w-2xl">
-              روز مرہ گروسری سے لے کر الیکٹرونکس تک، ہر چیز کی اصل مارکیٹ قیمت ایک کلک پر۔
-              پاکستان کے بڑے شہروں اور مقامی بازاروں کے ریٹس۔
-            </p>
-          </div>
-          <button
-            class="px-3 py-1.5 rounded-full border border-slate-700 text-xs text-slate-200 hover:border-emerald-400 hover:text-emerald-300 transition flex items-center gap-1 self-start">
-            🔔 Price Alerts / پرائس الرٹس
-          </button>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-          <!-- Card 1 -->
-          <article class="glass-card p-4 hover:shadow-yellow-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-yellow-500/10 flex items-center justify-center text-xl">🍔</div>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Food / فوڈ</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              تیار کھانا، فاسٹ فوڈ، پیزا، اور ریسٹورنٹس کی بہترین ڈیلز۔
-            </p>
-            <a href="pages/food.html"
-              class="text-xs font-semibold text-yellow-300 hover:text-yellow-200 flex items-center gap-1"
-              style="width: fit-content;">
-              Explore Deals / آفرز دیکھیں <span>→</span>
-            </a>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="glass-card p-4 hover:shadow-rose-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-rose-500/10 flex items-center justify-center text-xl">🚗</div>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Vehicles / گاڑیاں</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              نئی اور پرانی گاڑیاں، موٹر سائیکل، اور آٹو پارٹس کی قیمتیں۔
-            </p>
-            <button class="text-xs font-semibold text-rose-300 hover:text-rose-200 flex items-center gap-1">
-              Check Prices / قیمتیں جانیں <span>→</span>
-            </button>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="glass-card p-4 hover:shadow-emerald-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-xl">🛒</div>
-              <span
-                class="text-[0.7rem] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-400/40">
-                Popular / مشہور
-              </span>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Grocery / گروسری</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              ماہانہ راشن، چینی، آٹا، گھی، دالیں، چاول — سب کا ایک ساتھ موازنہ۔
-            </p>
-            <button class="text-xs font-semibold text-emerald-300 hover:text-emerald-200 flex items-center gap-1">
-              View Prices / قیمتیں دیکھیں <span>→</span>
-            </button>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="glass-card p-4 hover:shadow-orange-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-orange-500/10 flex items-center justify-center text-xl">🥦</div>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Vegetables &amp; Fruits / سبزیاں، پھل</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              سبزی منڈی اور قریبی سبزی والوں کی روزانہ کی اپڈیٹڈ قیمتیں۔
-            </p>
-            <button class="text-xs font-semibold text-orange-300 hover:text-orange-200 flex items-center gap-1">
-              Today Rates / آج کے ریٹ <span>→</span>
-            </button>
-          </article>
-
-          <!-- Card 5 -->
-          <article class="glass-card p-4 hover:shadow-sky-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-sky-500/10 flex items-center justify-center text-xl">📱</div>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Mobiles &amp; Gadgets / موبائلز</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              برانڈڈ فونز، اسمارت واچ، ایئربڈز — آن لائن اور لوکل مارکیٹ ریٹس۔
-            </p>
-            <button class="text-xs font-semibold text-sky-300 hover:text-sky-200 flex items-center gap-1">
-              Compare Now / موازنہ کریں <span>→</span>
-            </button>
-          </article>
-
-          <!-- Card 6 -->
-          <article class="glass-card p-4 hover:shadow-indigo-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-xl">🏠</div>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Property / پراپرٹی</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              گھر، پلاٹ، اور کمرشل پراپرٹی کی موجودہ مارکیٹ ویلیو۔
-            </p>
-            <button class="text-xs font-semibold text-indigo-300 hover:text-indigo-200 flex items-center gap-1">
-              View Market / مارکیٹ دیکھیں <span>→</span>
-            </button>
-          </article>
-
-          <!-- Card 7 -->
-          <article class="glass-card p-4 hover:shadow-fuchsia-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-fuchsia-500/10 flex items-center justify-center text-xl">🧴</div>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Personal Care / ذاتی نگہداشت</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              شیمپو، صابن، کریمیں، بچوں کی پراڈکٹس — ڈسکاونٹس اور بنڈل آفرز۔
-            </p>
-            <button class="text-xs font-semibold text-fuchsia-300 hover:text-fuchsia-200 flex items-center gap-1">
-              Discover Deals / آفرز دیکھیں <span>→</span>
-            </button>
-          </article>
-
-          <!-- Card 8 -->
-          <article class="glass-card p-4 hover:shadow-teal-500/20 hover:-translate-y-1 transition transform">
-            <div class="flex items-center justify-between mb-2">
-              <div class="w-10 h-10 rounded-2xl bg-teal-500/10 flex items-center justify-center text-xl">🧸</div>
-            </div>
-            <h3 class="font-semibold mb-1 text-slate-50">Kids / بچوں کا سامان</h3>
-            <p class="text-xs text-slate-400 mb-3">
-              بچوں کے کپڑے، کھلونے، اور روزمرہ کا سامان بہترین قیمت پر۔
-            </p>
-            <button class="text-xs font-semibold text-teal-300 hover:text-teal-200 flex items-center gap-1">
-              Shop Now / خریداری کریں <span>→</span>
-            </button>
-          </article>
-        </div>
+<!-- FEATURED PRODUCTS -->
+<section class="featured-section" id="products">
+  <div class="section-inner fade-in">
+    <div class="section-head">
+      <div class="section-title-block">
+        <span class="section-label">Today's Best</span>
+        <h2 class="section-title">Featured Products</h2>
+        <span class="section-title-ur">آج کی بہترین پیشکش</span>
       </div>
-    </section>
+      <a href="#" class="view-all-btn">View All →</a>
+    </div>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </div>
+</section>
 
-    <!-- BEST DEALS / SAMPLE LISTING -->
-    <section id="deals" class="py-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <h2 class="section-title gradient-text">
-              آج کی بہترین قیمتیں — Today’s Smart Picks
-            </h2>
-            <p class="text-slate-400 text-sm mt-1 max-w-2xl">
-              صارفین کی پسند، ڈسکاونٹس اور قریبی مارکیٹس کی بنیاد پر سمجھدار تجاویز۔
-              یہ صرف ڈیمو ہے، اصل پروڈکٹ میں آپ اپنی پسند (حلال گوشت، برانڈ، وزن) کے مطابق فلٹر کر سکیں گے۔
-            </p>
-          </div>
-        </div>
-
-        <div class="grid gap-4 lg:grid-cols-3">
-          <!-- Deals List -->
-          <div class="lg:col-span-2 glass-card p-4 sm:p-5">
-            <h3 class="font-semibold mb-3 text-slate-50 text-sm sm:text-base">
-              Suggested Smart Basket / سمجھدار مہینہ بھر کی خریداری
-            </h3>
-            <div class="grid gap-3 sm:grid-cols-2">
-              <div class="border border-slate-800 rounded-xl p-3 bg-slate-950/80">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="text-sm font-semibold text-slate-100">Basic Family Grocery</span>
-                  <span
-                    class="text-[0.65rem] px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/40 text-emerald-300">Budget</span>
-                </div>
-                <p class="text-[0.7rem] text-slate-400 mb-1">
-                  4 افراد کے لیے 1 مہینہ — 3 مختلف اسٹورز سے کم ترین ریٹس ملا کر۔
-                </p>
-                <p class="text-xs text-emerald-300 font-semibold">
-                  Estimated Saving / اندازاً بچت: Rs 1,450+
-                </p>
-              </div>
-              <div class="border border-slate-800 rounded-xl p-3 bg-slate-950/80">
-                <div class="flex items-center justify-between mb-1">
-                  <span class="text-sm font-semibold text-slate-100">Meat &amp; Protein Pack</span>
-                  <span
-                    class="text-[0.65rem] px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-400/40 text-orange-300">Weekly</span>
-                </div>
-                <p class="text-[0.7rem] text-slate-400 mb-1">
-                  چکن، مٹن، بیف — قریبی قصائی اور میٹ شاپس کے ریٹس۔
-                </p>
-                <p class="text-xs text-orange-300 font-semibold">
-                  Save up to / تک بچت: Rs 800 per week
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Small Insight Card -->
-          <div class="glass-card p-4 flex flex-col justify-between">
-            <div>
-              <h3 class="font-semibold mb-2 text-slate-50 text-sm sm:text-base">
-                پاکستانی صارف کے لیے خاص — Made for Pakistani Shoppers
-              </h3>
-              <ul class="text-[0.7rem] text-slate-400 space-y-1.5">
-                <li>• اردو اور انگلش دونوں میں آسان استعمال</li>
-                <li>• شہر، علاقہ، مارکیٹ کے مطابق فلٹر</li>
-                <li>• برانڈ / کھلا (open) اشیاء دونوں کا موازنہ</li>
-                <li>• مہنگائی کے رجحان (Inflation Trend) کے گراف</li>
-              </ul>
-            </div>
-            <button
-              class="mt-3 px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-sky-500 text-xs font-semibold text-slate-950 hover:from-emerald-400 hover:to-sky-400">
-              Join Early Access List / ابتدائی رسائی کے لیے رجسٹر کریں
-            </button>
-          </div>
-        </div>
+<!-- BLOG -->
+<section class="blog-section" id="blog">
+  <div class="section-inner fade-in">
+    <div class="section-head">
+      <div class="section-title-block">
+        <span class="section-label">Tips & Guides</span>
+        <h2 class="section-title">Shopping Guides & News</h2>
+        <span class="section-title-ur">خریداری کی رہنمائی</span>
       </div>
-    </section>
+      <a href="#" class="view-all-btn">All Articles →</a>
+    </div>
 
-    <!-- BLOG SECTION -->
-    <section id="blog" class="py-10 border-t border-slate-800/70 bg-slate-950/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-          <div>
-            <h2 class="section-title gradient-text">
-              سمجھدار خریدار بلاگ — Smart Buyer Blog
-            </h2>
-            <p class="text-slate-400 text-sm mt-1 max-w-2xl">
-              بچت کے ٹپس، مارکیٹ ریسرچ اور اہم خبروں پر مبنی بلاگز۔ آپ کے فیملی بجٹ کے لیے پریکٹیکل گائیڈ۔
-            </p>
-          </div>
-          <button
-            class="px-3 py-1.5 rounded-full border border-slate-700 text-xs text-slate-200 hover:border-sky-400 hover:text-sky-300 transition">
-            View All Posts / تمام پوسٹس
-          </button>
-        </div>
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <article class="glass-card p-4 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/80 transition">
-            <p class="text-[0.65rem] text-sky-300 mb-1">Inflation Insight / مہنگائی کا رجحان</p>
-            <h3 class="font-semibold text-sm text-slate-50 mb-1">
-              پاکستان میں ماہانہ گروسری بجٹ کیسے پلان کریں؟
-            </h3>
-            <p class="text-[0.7rem] text-slate-400 mb-2">
-              ٹوٹل بجٹ کے بجائے per kg اور per litre لاگت دیکھیں، خود کو over-buying سے بچائیں۔
-            </p>
-            <button class="text-[0.7rem] text-sky-300 hover:text-sky-200">
-              Read More / مزید پڑھیں →
-            </button>
-          </article>
-
-          <article class="glass-card p-4 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/80 transition">
-            <p class="text-[0.65rem] text-emerald-300 mb-1">Savings / بچت</p>
-            <h3 class="font-semibold text-sm text-slate-50 mb-1">
-              ہول سیل بمقابلہ ریٹیل: کون سا سستا پڑتا ہے؟
-            </h3>
-            <p class="text-[0.7rem] text-slate-400 mb-2">
-              کئی چیزوں میں wholesale سستا نہیں پڑتا، خاص طور پر خراب ہونے والی اشیاء میں۔
-            </p>
-            <button class="text-[0.7rem] text-emerald-300 hover:text-emerald-200">
-              Read More / مزید پڑھیں →
-            </button>
-          </article>
-
-          <article class="glass-card p-4 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/80 transition">
-            <p class="text-[0.65rem] text-orange-300 mb-1">Awareness / آگاہی</p>
-            <h3 class="font-semibold text-sm text-slate-50 mb-1">
-              پیکیجنگ پر لکھی قیمت اور اصل قیمت میں فرق کیوں؟
-            </h3>
-            <p class="text-[0.7rem] text-slate-400 mb-2">
-              MRP، ڈسکاونٹ، پروموشنل پیک اور لوکل ٹیکسز کا فرق سمجھیں۔
-            </p>
-            <button class="text-[0.7rem] text-orange-300 hover:text-orange-200">
-              Read More / مزید پڑھیں →
-            </button>
-          </article>
-        </div>
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner fade-in">
+    <div class="about-grid">
+      <div>
+        <p class="about-label">About Qeemat Point</p>
+        <h2 class="about-title">Pakistan Ki Pehli<br>Smart Price Platform</h2>
+        <span class="about-title-ur">پاکستان کا سب سے ذہین قیمت موازنہ پلیٹ فارم</span>
+        <p class="about-text">Qeemat Point helps millions of Pakistanis find the best deals on products available near them. Compare prices across thousands of sellers, discover the closest shop, and save money every time you shop.</p>
+        <p class="about-text">Our real-time price engine scans over 5 lakh products daily, ensuring you always get the most accurate and up-to-date information before making a purchase decision.</p>
+        <ul class="about-features">
+          <li><span class="about-feat-icon">🔍</span> Real-time price comparison from verified sellers</li>
+          <li><span class="about-feat-icon">📍</span> Location-based search — find deals nearest to you</li>
+          <li><span class="about-feat-icon">🔔</span> Price drop alerts sent to your phone</li>
+          <li><span class="about-feat-icon">⭐</span> Verified reviews from real Pakistani buyers</li>
+          <li><span class="about-feat-icon">🛡️</span> Scam protection & authentic seller verification</li>
+        </ul>
       </div>
-    </section>
-
-    <!-- ABOUT & CONTACT SECTION -->
-    <section id="about" class="py-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-2">
-        <!-- About -->
-        <div class="glass-card p-5">
-          <h2 class="section-title gradient-text mb-2">
-            ہمارے بارے میں — About Qeemat Point
-          </h2>
-          <p class="text-sm text-slate-300 mb-3">
-            Qeemat Point کا مقصد ایک عام پاکستانی صارف کو اصل مارکیٹ انفارمیشن دینا ہے تاکہ
-            خریداری جذبات سے نہیں، ڈیٹا سے ہو۔ ہم قیمتیں مختلف سورسز سے لے کر، صاف
-            (clean) اور ترتیب وار شکل میں آپ کے موبائل تک پہنچاتے ہیں۔
-          </p>
-          <ul class="text-[0.75rem] text-slate-400 space-y-1.5 mb-4">
-            <li>• لوکل مارکیٹس، سپر اسٹورز، اور آن لائن پلیٹ فارمز سے aggregated data</li>
-            <li>• شہر، علاقہ، اور distance کے حساب سے “Nearby First” الگورتھم</li>
-            <li>• قیمت کم سے زیادہ (Low to High) sorting بطور default</li>
-            <li>• آنے والے فیچرز: Price History، Alerts، Community Reviews، Halal Filters</li>
-          </ul>
-          <div class="flex flex-wrap gap-2 text-[0.7rem]">
-            <span class="px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-400/40">
-              Made in Pakistan 🇵🇰
-            </span>
-            <span class="px-2 py-1 rounded-full bg-slate-900/70 text-slate-200 border border-slate-700">
-              Urdu + English Interface
-            </span>
-          </div>
+      <div class="about-stats-grid">
+        <div class="about-stat-card">
+          <div class="about-stat-num">5L+</div>
+          <div class="about-stat-label">Products Listed</div>
         </div>
-
-        <!-- Contact -->
-        <div id="contact" class="glass-card p-5">
-          <h2 class="section-title gradient-text mb-2">
-            رابطہ — Contact Us
-          </h2>
-          <p class="text-sm text-slate-300 mb-4">
-            اگر آپ دکاندار، سپر اسٹور، یا برانڈ ہیں اور اپنی قیمتیں / آفرز دکھانا چاہتے ہیں
-            تو نیچے فارم فل کریں۔ ہم آپ سے جلد رابطہ کریں گے۔
-          </p>
-          <form class="space-y-3 text-[0.8rem]">
-            <div class="grid sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block mb-1 text-slate-300">نام / Name</label>
-                <input type="text"
-                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400" />
-              </div>
-              <div>
-                <label class="block mb-1 text-slate-300">ای میل / Email</label>
-                <input type="email"
-                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400" />
-              </div>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block mb-1 text-slate-300">شہر / City</label>
-                <input type="text" placeholder="Karachi, Lahore, Islamabad..."
-                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400" />
-              </div>
-              <div>
-                <label class="block mb-1 text-slate-300">آپ کون ہیں؟ / You are</label>
-                <select
-                  class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400">
-                  <option>Retail Shop / جنرل اسٹور</option>
-                  <option>Super Store / سپر اسٹور</option>
-                  <option>Brand / برانڈ</option>
-                  <option>Wholesale / ہول سیل</option>
-                  <option>Other / دیگر</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label class="block mb-1 text-slate-300">پیغام / Message</label>
-              <textarea rows="3"
-                class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-400"></textarea>
-            </div>
-            <button type="button"
-              class="mt-1 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-sky-500 text-slate-950 text-xs font-semibold hover:from-emerald-400 hover:to-sky-400">
-              Send Message / پیغام بھیجیں
-            </button>
-          </form>
+        <div class="about-stat-card">
+          <div class="about-stat-num">12K+</div>
+          <div class="about-stat-label">Active Sellers</div>
         </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-800/80 bg-slate-950/90">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
-        <div class="text-[0.75rem] text-slate-500">
-          © <span id="year"></span> Qeemat Point —
-          قِیمَت پوائنٹ All rights reserved. | Built for
+        <div class="about-stat-card">
+          <div class="about-stat-num">340+</div>
+          <div class="about-stat-label">Cities Covered</div>
         </div>
-        <div class="flex flex-wrap gap-3 items-center text-[0.75rem]">
-          <span class="text-slate-400">Follow us:</span>
-          <a href="#"
-            class="px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200 hover:border-sky-400 hover:text-sky-300">Facebook</a>
-          <a href="#"
-            class="px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200 hover:border-sky-400 hover:text-sky-300">Instagram</a>
-          <a href="#"
-            class="px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-200 hover:border-sky-400 hover:text-sky-300">YouTube</a>
+        <div class="about-stat-card">
+          <div class="about-stat-num">2M+</div>
+          <div class="about-stat-label">Happy Users</div>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- JavaScript -->
-  <script src="js/script.js"></script>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner fade-in">
+    <div class="section-head">
+      <div class="section-title-block">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">Contact Us</h2>
+        <span class="section-title-ur">ہم سے رابطہ کریں</span>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="contact-icon-wrap">📞</div>
+          <div class="contact-info-text">
+            <div class="contact-info-label">Phone / WhatsApp</div>
+            <div class="contact-info-value">+92 300 1234567</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon-wrap">📧</div>
+          <div class="contact-info-text">
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value">info@qeemat-point.pk</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon-wrap">🏢</div>
+          <div class="contact-info-text">
+            <div class="contact-info-label">Head Office</div>
+            <div class="contact-info-value">Karachi, Pakistan</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon-wrap">🕐</div>
+          <div class="contact-info-text">
+            <div class="contact-info-label">Working Hours</div>
+            <div class="contact-info-value">Mon–Sat, 9:00 AM – 6:00 PM</div>
+          </div>
+        </div>
+
+        <p style="font-size:13px;color:var(--muted);margin-top:8px;font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-size:15px;">ہم آپ کی ہر پریشانی حل کرنے کے لیے حاضر ہیں</p>
+
+        <div class="contact-social">
+          <a class="social-btn s-fb" href="#">f</a>
+          <a class="social-btn s-wa" href="#">💬</a>
+          <a class="social-btn s-ig" href="#">📷</a>
+          <a class="social-btn s-yt" href="#">▶</a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3 class="form-title">Send Us a Message</h3>
+        <span class="form-title-ur">ہمیں پیغام بھیجیں</span>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Muhammad Ali">
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+92 3XX XXXXXXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option>General Inquiry</option>
+            <option>List My Product</option>
+            <option>Report Wrong Price</option>
+            <option>Seller Registration</option>
+            <option>Complaint</option>
+            <option>Partnership</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Describe your query in detail..."></textarea>
+        </div>
+        <button class="form-submit">
+          📨 Send Message — پیغام بھیجیں
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-icon">🏷️</div>
+        <div class="footer-logo-text">
+          <span class="name-en">Qeemat Point</span>
+          <span class="name-ur">قیمت پوائنٹ</span>
+        </div>
+      </div>
+      <p class="footer-desc">Pakistan's most trusted price comparison platform. Find the best deals near you, save money, and shop smart.</p>
+      <p style="font-family:'Noto Nastaliq Urdu',serif;font-size:14px;color:rgba(245,166,35,0.8);direction:rtl;">پاکستان میں سمارٹ خریداری کا آغاز کریں</p>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">Quick Links</h4>
+      <span class="footer-col-title-ur">فوری روابط</span>
+      <ul class="footer-links">
+        <li><a href="#">🏠 Home</a></li>
+        <li><a href="#">📦 All Products</a></li>
+        <li><a href="#">🏷️ Today's Deals</a></li>
+        <li><a href="#">⭐ Top Rated</a></li>
+        <li><a href="#">📍 Near Me</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">Categories</h4>
+      <span class="footer-col-title-ur">اقسام</span>
+      <ul class="footer-links">
+        <li><a href="#">📱 Mobiles</a></li>
+        <li><a href="#">💻 Laptops</a></li>
+        <li><a href="#">🏠 Appliances</a></li>
+        <li><a href="#">👗 Fashion</a></li>
+        <li><a href="#">🍳 Kitchen</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-col-title">Support</h4>
+      <span class="footer-col-title-ur">مدد</span>
+      <ul class="footer-links">
+        <li><a href="#">❓ FAQ</a></li>
+        <li><a href="#">🛡️ Privacy Policy</a></li>
+        <li><a href="#">📄 Terms of Use</a></li>
+        <li><a href="#">🤝 Partner with Us</a></li>
+        <li><a href="#">📱 Download App</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-bottom-text">© 2025 Qeemat Point · Made with ❤️ for Pakistan 🇵🇰</span>
+    <div class="footer-bottom-right">
+      <span>🔒 Secure</span>
+      <span>✅ Verified</span>
+      <span>🇵🇰 Pakistan Made</span>
+    </div>
+  </div>
+</footer>
+
+<!-- COMPARE FLOATING BAR -->
+<div class="compare-bar" id="compareBar">
+  <span class="compare-bar-text">🔍 <strong id="compareCount">0</strong> items selected for comparison</span>
+  <button class="compare-bar-btn">Compare Now →</button>
+  <button class="compare-bar-clear" onclick="document.getElementById('compareBar').classList.remove('visible')">✕</button>
+</div>
+
+<script>
+// ─── DATA ───
+const categories = [
+  { icon: '📱', name: 'Mobiles', ur: 'موبائل', count: '48,200+' },
+  { icon: '💻', name: 'Laptops', ur: 'لیپ ٹاپ', count: '12,400+' },
+  { icon: '🏠', name: 'Appliances', ur: 'گھریلو آلات', count: '31,000+' },
+  { icon: '👗', name: 'Fashion', ur: 'فیشن', count: '92,000+' },
+  { icon: '🍳', name: 'Kitchen', ur: 'کچن', count: '22,500+' },
+  { icon: '🚗', name: 'Automotive', ur: 'گاڑیاں', count: '18,700+' },
+  { icon: '💊', name: 'Health', ur: 'صحت', count: '14,300+' },
+  { icon: '📚', name: 'Books', ur: 'کتابیں', count: '8,900+' },
+  { icon: '🎮', name: 'Gaming', ur: 'گیمنگ', count: '6,100+' },
+  { icon: '⚽', name: 'Sports', ur: 'کھیل', count: '9,800+' },
+  { icon: '🍼', name: 'Baby', ur: 'بچوں کا سامان', count: '7,600+' },
+  { icon: '🌱', name: 'Garden', ur: 'باغبانی', count: '4,200+' },
+];
+
+const products = [
+  { id:1, icon:'📱', name:'Samsung Galaxy A55 5G', store:'Al-Habib Mobile', city:'Karachi', price:89999, oldPrice:99999, discount:10, badge:'sale', nearby:true, cat:'mobiles' },
+  { id:2, icon:'📱', name:'iPhone 15 128GB', store:'iZone Pakistan', city:'Lahore', price:234999, oldPrice:249999, discount:6, badge:'top', nearby:false, cat:'mobiles' },
+  { id:3, icon:'💻', name:'Dell Laptop Core i5 12th Gen', store:'TechZone', city:'Karachi', price:129000, oldPrice:145000, discount:11, badge:'sale', nearby:true, cat:'laptops' },
+  { id:4, icon:'🏠', name:'Dawlance Fridge 9178', store:'HomeAppliances.pk', city:'Islamabad', price:78500, oldPrice:85000, discount:8, badge:'new', nearby:false, cat:'appliances' },
+  { id:5, icon:'📱', name:'OPPO A78 256GB', store:'Mobile City', city:'Karachi', price:48999, oldPrice:54999, discount:11, badge:'sale', nearby:true, cat:'mobiles' },
+  { id:6, icon:'🎮', name:'PS5 Console 825GB', store:'GameZone PK', city:'Lahore', price:149999, oldPrice:165000, discount:9, badge:'top', nearby:false, cat:'gaming' },
+  { id:7, icon:'👟', name:'Nike Air Max 270', store:'Sports Station', city:'Karachi', price:18500, oldPrice:22000, discount:16, badge:'sale', nearby:true, cat:'sports' },
+  { id:8, icon:'🏠', name:'Orient AC 1.5 Ton Inverter', store:'Cool Point', city:'Rawalpindi', price:112000, oldPrice:124000, discount:10, badge:'new', nearby:false, cat:'appliances' },
+];
+
+const tickerItems = [
+  { name: 'Samsung A55', price: 'Rs. 89,999', emoji: '📱' },
+  { name: 'Honda CD-70 2025', price: 'Rs. 1,89,900', emoji: '🏍️' },
+  { name: 'Dawlance Fridge', price: 'Rs. 78,500', emoji: '🧊' },
+  { name: 'Dell Laptop i5', price: 'Rs. 1,29,000', emoji: '💻' },
+  { name: 'Orient AC 1.5T', price: 'Rs. 1,12,000', emoji: '❄️' },
+  { name: 'PS5 Console', price: 'Rs. 1,49,999', emoji: '🎮' },
+  { name: 'Nike Air Max', price: 'Rs. 18,500', emoji: '👟' },
+  { name: 'iPhone 15 128GB', price: 'Rs. 2,34,999', emoji: '📱' },
+  { name: 'Hisense LED 43"', price: 'Rs. 64,999', emoji: '📺' },
+  { name: 'Surf Excel 3kg', price: 'Rs. 1,299', emoji: '🧺' },
+];
+
+const blogs = [
+  { icon: '💡', cat: 'Buying Guide', date: '15 April 2025', title: 'Pakistan Mein Sasta Smartphone Kaise Khareedein — Complete Guide 2025', excerpt: 'Budget phones under Rs 50,000 that give you the best value for money in Pakistan. We tested 20 phones to find the top picks.', featured: true },
+  { icon: '🔌', cat: 'Tips', date: '10 April 2025', title: 'Bijli Bachao: Best Inverter ACs in Pakistan 2025', excerpt: 'With electricity bills at all-time high, we compare the most energy-efficient inverter ACs available.' },
+  { icon: '🛒', cat: 'News', date: '8 April 2025', title: 'Top 10 Trusted Online Shopping Platforms in Pakistan', excerpt: 'Not all online stores are equal. We rank the most trusted platforms for safe shopping in 2025.' },
+];
+
+const imageItems = [
+  { emoji: '📱', label: 'Mobiles', bg: 'linear-gradient(135deg,#667eea,#764ba2)' },
+  { emoji: '💻', label: 'Laptops', bg: 'linear-gradient(135deg,#11998e,#38ef7d)' },
+  { emoji: '👗', label: 'Fashion', bg: 'linear-gradient(135deg,#f093fb,#f5576c)' },
+  { emoji: '🏠', label: 'Appliances', bg: 'linear-gradient(135deg,#4facfe,#00f2fe)' },
+  { emoji: '🍳', label: 'Kitchen', bg: 'linear-gradient(135deg,#43e97b,#38f9d7)' },
+  { emoji: '🚗', label: 'Automotive', bg: 'linear-gradient(135deg,#fa709a,#fee140)' },
+  { emoji: '💊', label: 'Health', bg: 'linear-gradient(135deg,#a18cd1,#fbc2eb)' },
+  { emoji: '📚', label: 'Books', bg: 'linear-gradient(135deg,#fda085,#f6d365)' },
+  { emoji: '🎮', label: 'Gaming', bg: 'linear-gradient(135deg,#30cfd0,#330867)' },
+  { emoji: '⚽', label: 'Sports', bg: 'linear-gradient(135deg,#96fbc4,#f9f586)' },
+];
+
+const bannerAds = [
+  { icon: '📱', name: 'Samsung Galaxy A55', sub: 'Best Price Guaranteed', price: 'Rs. 89,999' },
+  { icon: '🏠', name: 'Dawlance Fridge 20 Cu ft', sub: 'Limited Time Offer', price: 'Rs. 78,500' },
+  { icon: '💻', name: 'HP Laptop i7 12th Gen', sub: 'Compare 15+ Sellers', price: 'Rs. 1,85,000' },
+  { icon: '❄️', name: 'Orient Inverter AC 1.5T', sub: 'Lowest Price Today', price: 'Rs. 1,12,000' },
+  { icon: '👟', name: 'Adidas Superstar Pakistan', sub: 'Authentic Only', price: 'Rs. 14,999' },
+  { icon: '📺', name: 'Hisense 43" 4K LED TV', sub: 'Free Installation', price: 'Rs. 64,999' },
+];
+
+const sideAdItems = [
+  { icon: '📱', name: 'Samsung A34', price: 'Rs.65,999', disc: '-12% OFF' },
+  { icon: '💻', name: 'Lenovo IdeaPad', price: 'Rs.98,000', disc: 'Best Deal' },
+  { icon: '🧊', name: 'Haier Fridge', price: 'Rs.55,000', disc: '-8% OFF' },
+  { icon: '👟', name: 'Nike Running', price: 'Rs.16,000', disc: 'Trending' },
+  { icon: '📺', name: 'TCL 55" 4K', price: 'Rs.95,000', disc: 'Sale!' },
+  { icon: '🎮', name: 'Xbox Controller', price: 'Rs.12,500', disc: 'Hot Deal' },
+  { icon: '🏍️', name: 'Yamaha YBR', price: 'Rs.2,65,000', disc: 'New!' },
+  { icon: '💊', name: 'Multivitamins', price: 'Rs.1,200', disc: 'Buy 2+1' },
+];
+
+// ─── BUILD UI ───
+
+// Categories
+const catGrid = document.getElementById('catGrid');
+categories.forEach(c => {
+  catGrid.innerHTML += `
+    <div class="cat-card" onclick="searchByCategory('${c.name}')">
+      <span class="cat-icon">${c.icon}</span>
+      <span class="cat-name">${c.name}</span>
+      <span class="cat-name-ur">${c.ur}</span>
+      <span class="cat-count">${c.count} items</span>
+    </div>`;
+});
+
+// Build product card HTML
+function productCardHTML(p) {
+  return `
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <span style="font-size:72px">${p.icon}</span>
+        <div class="product-badge-wrap">
+          ${p.badge === 'sale' ? '<span class="badge badge-sale">SALE</span>' : ''}
+          ${p.badge === 'new' ? '<span class="badge badge-new">NEW</span>' : ''}
+          ${p.badge === 'top' ? '<span class="badge badge-top">TOP</span>' : ''}
+          ${p.nearby ? '<span class="badge badge-near">📍 NEAR</span>' : ''}
+        </div>
+        <button class="product-fav">🤍</button>
+      </div>
+      <div class="product-info">
+        <div class="product-store"><span class="store-dot"></span>${p.store}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-location">📍 ${p.city} ${p.nearby ? '<span class="nearby-pill">✅ Near You</span>' : ''}</div>
+        <div class="product-price-row">
+          <div>
+            <div class="product-price">Rs. ${p.price.toLocaleString()}</div>
+            <div class="product-price-old">Rs. ${p.oldPrice.toLocaleString()}</div>
+          </div>
+          <div class="product-discount">-${p.discount}%</div>
+        </div>
+        <button class="product-compare-btn">🔍 Compare Price</button>
+      </div>
+    </div>`;
+}
+
+// Featured Products
+const featuredGrid = document.getElementById('featuredGrid');
+products.forEach(p => {
+  featuredGrid.innerHTML += productCardHTML(p);
+});
+
+// Ticker
+const tickerScroll = document.getElementById('tickerScroll');
+let tickerHTML = '';
+for (let i = 0; i < 2; i++) {
+  tickerItems.forEach(t => {
+    tickerHTML += `<span class="ticker-item"><span>${t.emoji}</span><span class="ticker-item-name">${t.name}</span><span class="ticker-item-price">${t.price}</span></span><span class="ticker-sep">•</span>`;
+  });
+}
+tickerScroll.innerHTML = tickerHTML;
+
+// Banner Ads
+const bannerContent = document.getElementById('bannerContent');
+let bannerHTML = '';
+for (let i = 0; i < 2; i++) {
+  bannerAds.forEach((a, idx) => {
+    bannerHTML += `<div class="banner-ad-item"><span class="banner-ad-icon">${a.icon}</span><div class="banner-ad-text"><div class="banner-ad-title">${a.name}</div><div class="banner-ad-sub">${a.sub}</div></div><span class="banner-ad-price">${a.price}</span></div>`;
+    bannerHTML += `<span class="banner-ad-divider">|</span>`;
+  });
+}
+bannerContent.innerHTML = bannerHTML;
+
+// Side Ad
+const sideAdScroll = document.getElementById('sideAdScroll');
+let sideHTML = '';
+for (let i = 0; i < 2; i++) {
+  sideAdItems.forEach(a => {
+    sideHTML += `<div class="side-ad-item"><span class="side-ad-item-icon">${a.icon}</span><div class="side-ad-item-name">${a.name}</div><div class="side-ad-item-price">${a.price}</div><span class="side-ad-item-disc">${a.disc}</span></div>`;
+  });
+}
+sideAdScroll.innerHTML = sideHTML;
+
+// Image strip
+const row1 = document.getElementById('stripRow1');
+const row2 = document.getElementById('stripRow2');
+let s1 = '', s2 = '';
+for (let r = 0; r < 2; r++) {
+  imageItems.forEach(img => {
+    s1 += `<div class="strip-card" style="background:${img.bg}"><div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:52px">${img.emoji}</div><div class="strip-card-label">${img.label}</div></div>`;
+    s2 += `<div class="strip-card" style="background:${img.bg};filter:hue-rotate(30deg)"><div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:52px">${img.emoji}</div><div class="strip-card-label">${img.label}</div></div>`;
+  });
+}
+row1.innerHTML = s1;
+row2.innerHTML = s2;
+
+// Blog
+const blogGrid = document.getElementById('blogGrid');
+let blogHTML = '';
+blogs.forEach((b, i) => {
+  blogHTML += `
+    <a href="#" class="blog-card ${i===0?'featured':''}">
+      <div class="blog-img"><span>${b.icon}</span></div>
+      <div class="blog-content">
+        <div class="blog-meta">
+          <span class="blog-cat">${b.cat}</span>
+          <span class="blog-date">${b.date}</span>
+        </div>
+        <div class="blog-title">${b.title}</div>
+        <div class="blog-excerpt">${b.excerpt}</div>
+        <span class="blog-read-more">Read More →</span>
+      </div>
+    </a>`;
+});
+blogGrid.innerHTML = blogHTML;
+
+// ─── SEARCH ───
+function doSearch() {
+  const q = document.getElementById('searchInput').value;
+  const cat = document.getElementById('catSelect').value;
+  triggerSearch(q, cat);
+}
+
+function quickSearch(q) {
+  document.getElementById('searchInput').value = q;
+  triggerSearch(q, '');
+}
+
+function searchByCategory(cat) {
+  document.getElementById('catSelect').value = cat.toLowerCase();
+  triggerSearch('', cat.toLowerCase());
+}
+
+function triggerSearch(query, category) {
+  const resultsSection = document.getElementById('search-results-section');
+  const resultsGrid = document.getElementById('resultsGrid');
+  const resultsTitle = document.getElementById('resultsTitle');
+  const resultsSubtitle = document.getElementById('resultsSubtitle');
+  const resultCount = document.getElementById('resultCount');
+
+  // Filter
+  let filtered = products.filter(p => {
+    const matchQ = !query || p.name.toLowerCase().includes(query.toLowerCase()) || p.store.toLowerCase().includes(query.toLowerCase());
+    const matchC = !category || p.cat === category.toLowerCase();
+    return matchQ || matchC;
+  });
+
+  // Sort: nearby first, then price low to high
+  filtered.sort((a, b) => {
+    if (a.nearby !== b.nearby) return a.nearby ? -1 : 1;
+    return a.price - b.price;
+  });
+
+  // If no direct match, show all sorted
+  if (filtered.length === 0) filtered = [...products].sort((a,b) => (a.nearby!==b.nearby)?(a.nearby?-1:1):a.price-b.price);
+
+  resultsTitle.textContent = query ? `Results for "${query}"` : `Category: ${category || 'All'}`;
+  resultsSubtitle.textContent = `Showing prices from low to high · Nearby sellers shown first · Karachi area`;
+  resultCount.textContent = filtered.length;
+
+  resultsGrid.innerHTML = filtered.map(p => productCardHTML(p)).join('');
+
+  resultsSection.style.display = 'block';
+  resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+document.getElementById('searchInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') doSearch();
+});
+
+// ─── SCROLL ANIMATIONS ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ─── NAV ACTIVE ───
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  const sections = ['home','categories','products','blog','about','contact'];
+  const scrollY = window.scrollY + 100;
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && scrollY >= el.offsetTop && scrollY < el.offsetTop + el.offsetHeight) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+});
+</script>
 </body>
-
 </html>
